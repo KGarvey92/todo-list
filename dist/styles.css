@@ -5,7 +5,7 @@
         "nav main main main"
         "footer footer footer footer";
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 100px 1fr 100px;
+    grid-template-rows: 100px 1fr 80px;
     width: 100vw;
     min-height: 100vh;
 }
@@ -13,7 +13,7 @@
 header {
     grid-area: header;
     background-color: #4CD4CB;
-    outline: 1px dashed red;
+    border-bottom: 3px solid black;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,24 +29,36 @@ header {
 .hamburger {
     height: 60px;
     margin-right: 20px;
+    cursor: pointer;
 }
 
 nav {
     grid-area: nav;
-    outline: 1px dashed red;
+    background-color: #4CD4CB;
+    border-right: 3px solid black;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    display: none;
 }
 
 main {
     grid-area: main;
-    outline: 1px dashed red;
+    grid-column: 1 / 5;
+    background-color:#F5E5C0;
 }
 
 footer {
     grid-area: footer;
-    outline: 1px dashed red;
+    background-color: #4CD4CB;
+    border-top: 3px solid black;
 }
 
-.hidden {
-    display: none;
+@media (min-width: 600px) {
+    nav {
+        display: block;
+    }
 }
-

@@ -15,6 +15,24 @@ function createHeader() {
   return header;
 }
 
+function createSidebar() {
+  const nav = document.createElement('nav');
+
+  return nav;
+}
+
+function toggleSidebar() {
+  const hamburger = document.querySelector('.hamburger');
+  hamburger.addEventListener('click', () => {
+    const nav = document.querySelector('nav');
+    if (nav.style.display === 'none') {
+      nav.style.display = 'block';
+    } else {
+      nav.style.display = 'none';
+    }
+  });
+}
+
 function createFooter() {
   const footer = document.createElement('footer');
   footer.innerText = 'Kieran Garvey - Odin Project 2023';
@@ -30,6 +48,9 @@ function loadPage() {
   container.appendChild(header);
   container.appendChild(main);
   container.appendChild(footer);
+  const sidebar = createSidebar();
+  container.appendChild(sidebar);
+  toggleSidebar();
 }
 
 export default loadPage;
