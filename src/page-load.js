@@ -1,8 +1,16 @@
 function createHeader() {
   const header = document.createElement('header');
   const logo = document.createElement('img');
-  logo.setAttribute('src', 'images/logo-colour.png');
+  logo.setAttribute('src', 'images/logo-transparent.png');
+  logo.setAttribute('alt', 'To-do, Will-do logo');
+  logo.setAttribute('class', 'logo');
   header.appendChild(logo);
+
+  const menu = document.createElement('img');
+  menu.setAttribute('src', 'images/menu.svg');
+  menu.setAttribute('alt', 'open or close navigation sidebar');
+  menu.setAttribute('class', 'hamburger');
+  header.appendChild(menu);
 
   return header;
 }
