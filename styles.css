@@ -1,10 +1,10 @@
 #content {
     display: grid;
     grid-template-areas: 
-        "header header header"
-        "nav main main"
-        "footer footer footer";
-    grid-template-columns: repeat(3, 1fr);
+        "header header header header"
+        "nav main main main"
+        "footer footer footer footer";
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 100px 1fr 100px;
     width: 100vw;
     min-height: 100vh;
@@ -13,20 +13,40 @@
 header {
     grid-area: header;
     background-color: #4CD4CB;
+    outline: 1px dashed red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    height: 80px;
+    width: auto;
+    margin-left: 20px;
+}
+
+.hamburger {
+    height: 60px;
+    margin-right: 20px;
 }
 
 nav {
     grid-area: nav;
+    outline: 1px dashed red;
 }
 
 main {
     grid-area: main;
+    outline: 1px dashed red;
 }
 
 footer {
     grid-area: footer;
+    outline: 1px dashed red;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
+
