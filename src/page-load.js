@@ -18,6 +18,15 @@ function createHeader() {
 function createSidebar() {
   const nav = document.createElement('nav');
   nav.classList.add('show-nav');
+  const navContent = document.createElement('div');
+  navContent.classList.add('nav-content');
+  const inbox = document.createElement('div');
+  inbox.innerText = 'Inbox';
+  navContent.appendChild(inbox);
+  const projectBtn = document.createElement('div');
+  projectBtn.innerText = 'Projects';
+  navContent.appendChild(projectBtn);
+  nav.appendChild(navContent);
 
   return nav;
 }

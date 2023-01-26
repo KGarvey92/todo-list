@@ -32,6 +32,15 @@ header {
     cursor: pointer;
 }
 
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
 nav {
     grid-area: nav;
     background-color: #4CD4CB;
@@ -48,13 +57,15 @@ nav {
     transition: opacity 1s, visibility 1s;
 }
 
-@keyframes slideIn {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(0);
-    }
+.nav-content {
+    box-sizing: border-box;
+    height: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
 }
 
 .show-nav {
@@ -63,14 +74,7 @@ nav {
     animation: slideIn 0.5s ease-in-out;
 }
 
-@keyframes slideIn {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
+
 
 main {
     grid-area: main;
