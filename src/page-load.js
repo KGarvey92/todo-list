@@ -17,6 +17,7 @@ function createHeader() {
 
 function createSidebar() {
   const nav = document.createElement('nav');
+  nav.classList.add('show-nav');
 
   return nav;
 }
@@ -30,6 +31,7 @@ function toggleSidebar() {
     } else {
       nav.style.display = 'none';
     }
+    nav.classList.toggle('show-nav');
   });
 }
 
