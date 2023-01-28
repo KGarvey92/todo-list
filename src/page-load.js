@@ -16,17 +16,27 @@ function createHeader() {
 }
 
 function createSidebar() {
+  // create nav that slides out when menu button clicked.
   const nav = document.createElement('nav');
   nav.classList.add('show-nav');
-  const navContent = document.createElement('div');
-  navContent.classList.add('nav-content');
-  const inbox = document.createElement('div');
+  // Inbox and Project buttons.
+  const navBtns = document.createElement('ul');
+  navBtns.classList.add('nav-btns');
+  const inbox = document.createElement('li');
   inbox.innerText = 'Inbox';
-  navContent.appendChild(inbox);
-  const projectBtn = document.createElement('div');
+  navBtns.appendChild(inbox);
+  const projectBtn = document.createElement('li');
   projectBtn.innerText = 'Projects';
-  navContent.appendChild(projectBtn);
-  nav.appendChild(navContent);
+  navBtns.appendChild(projectBtn);
+  nav.appendChild(navBtns);
+  // List of different projects
+  const projectList = document.createElement('ul');
+  projectList.classList.add('nav-projects');
+  // **for each project in list of projects add li, match innerText to title and append**
+  const addProject = document.createElement('li');
+  addProject.innerText = '+';
+  projectList.appendChild(addProject);
+  nav.appendChild(projectList);
 
   return nav;
 }
