@@ -56,7 +56,18 @@ function toggleSidebar() {
 
 function createFooter() {
   const footer = document.createElement('footer');
-  footer.innerText = 'Kieran Garvey - Odin Project 2023';
+  const text = document.createElement('div');
+  text.classList.add('footer-text');
+  text.innerText = 'Kieran Garvey - Odin Project 2023';
+  footer.appendChild(text);
+  const github = document.createElement('img');
+  github.setAttribute('src', 'images/icons/github.svg');
+  github.setAttribute('alt', 'Link to github');
+  github.setAttribute('title', 'Go to my Github page');
+  github.addEventListener('click', () => {
+    window.location.href = 'https://github.com/KGarvey92';
+  });
+  footer.appendChild(github);
 
   return footer;
 }
