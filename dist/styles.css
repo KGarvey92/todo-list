@@ -120,6 +120,11 @@ main {
     grid-area: main;
     grid-column: 1 / 5;
     background-color:#F5E5C0;
+    padding-top: 50px;
+}
+
+.tasks {
+    text-align: center;
 }
 
 footer {
@@ -148,5 +153,25 @@ footer > img:hover {
 @media (min-width: 600px) {
     nav {
         display: block;
+    }
+
+    main {
+        padding-left: 250px;
+    }
+
+    .tasks {
+        text-align: justify;
+    }
+}
+
+@media (min-width: 900px) {
+    main {
+        padding-left: 350px;
+    }
+}
+
+@media (min-width: 1200px) {
+    main {
+        padding-left: 450px;
     }
 }
