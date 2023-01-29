@@ -26,10 +26,22 @@ header {
     margin-left: 20px;
 }
 
+@keyframes shake {
+    0% {transform: rotate(0deg);}
+    25% {transform: rotate(-5deg)}
+    50% {transform: rotate(0deg);}
+    75% {transform: rotate(5deg);}
+    100% {transform: rotate(0deg);}
+}
+
 .hamburger {
     height: 60px;
     margin-right: 20px;
+}
+
+.hamburger:hover {
     cursor: pointer;
+    animation: 0.4s shake;
 }
 
 @keyframes slideIn {
@@ -44,6 +56,7 @@ header {
 nav {
     grid-area: nav;
     min-width: 200px;
+    max-width: 340px;
     background-color: #4CD4CB;
     border-right: 3px solid black;
     border-top: 3px solid black;
