@@ -126,11 +126,23 @@ footer {
     grid-area: footer;
     background-color: #4CD4CB;
     border-top: 3px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.footer-text {
     font-family: 'PT Sans', sans-serif;
     font-size: 1.2rem;
     font-weight: bold;
-    text-align: center;
-    padding-top: 20px;
+}
+
+footer > img:hover {
+    cursor: pointer;
+    scale: 1.1;
+    animation: 0.4s shake;
+
 }
 
 @media (min-width: 600px) {
