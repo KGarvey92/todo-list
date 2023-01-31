@@ -23,9 +23,11 @@ function createSidebar() {
   const navBtns = document.createElement('ul');
   navBtns.classList.add('nav-btns');
   const inbox = document.createElement('li');
+  inbox.setAttribute('id', 'nav-inbox');
   inbox.innerText = 'Inbox';
   navBtns.appendChild(inbox);
   const projectBtn = document.createElement('li');
+  projectBtn.setAttribute('id', 'nav-projects');
   projectBtn.innerText = 'Projects';
   navBtns.appendChild(projectBtn);
   nav.appendChild(navBtns);

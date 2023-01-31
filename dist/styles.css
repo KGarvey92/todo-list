@@ -8,6 +8,7 @@
     grid-template-rows: 100px 1fr 60px;
     width: 100vw;
     min-height: 100vh;
+    font-family: 'PT Sans', sans-serif;
 }
 
 header {
@@ -88,7 +89,6 @@ nav {
 .nav-btns > li {
     font-size: 1.4rem;
     font-weight: bold;
-    font-family: 'PT Sans', sans-serif;
     text-align: center;
     border: 5px solid black;
     border-radius: 20px;
@@ -110,7 +110,6 @@ nav li:hover {
     margin: 5px 40px;
     text-align: center;
     font-size: 1.3rem;
-    font-family: 'PT Sans', sans-serif;
     border-left: 2px solid black;
     border-right: 2px solid black;
 
@@ -138,7 +137,6 @@ footer {
 }
 
 .footer-text {
-    font-family: 'PT Sans', sans-serif;
     font-size: 1.2rem;
     font-weight: bold;
 }
