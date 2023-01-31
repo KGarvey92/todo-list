@@ -122,7 +122,7 @@ main {
     padding-top: 50px;
 }
 
-.tasks {
+.tasks, .projects, .content-headings {
     text-align: center;
 }
 
@@ -157,7 +157,7 @@ footer > img:hover {
         padding-left: 250px;
     }
 
-    .tasks {
+    .tasks, .projects, .content-headings {
         text-align: justify;
     }
 }

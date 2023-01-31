@@ -1,7 +1,9 @@
+import format from 'date-fns';
+
 class Todo {
   constructor(title, dueDate, description, priority) {
     this.title = title;
-    this.dueDate = dueDate;
+    this.dueDate = format(dueDate, 'MM/dd/yyyy');
     this.description = description;
     this.priority = priority;
   }
@@ -10,3 +12,5 @@ class Todo {
     this[targetProp] = value;
   }
 }
+
+export default Todo;

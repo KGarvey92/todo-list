@@ -2,6 +2,7 @@ function loadProjects() {
   const main = document.querySelector('main');
   main.innerText = '';
   const heading = document.createElement('h1');
+  heading.classList.add('content-headings');
   heading.innerText = 'Projects';
   main.appendChild(heading);
   const sample = document.createElement('div');
