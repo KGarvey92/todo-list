@@ -1,6 +1,6 @@
 import loadPage from './page-load';
 import loadHome from './home';
-import loadProjects from './projects';
+import loadProjects from './projects-page';
 
 function init() {
   loadPage();

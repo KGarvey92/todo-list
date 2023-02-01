@@ -9,7 +9,11 @@ class Todo {
   }
 
   editTodo(targetProp, value) {
-    this[targetProp] = value;
+    if (targetProp === 'dueDate') {
+      this[targetProp] = format(value, 'MM/dd/yyyy');
+    } else {
+      this[targetProp] = value;
+    }
   }
 }
 
