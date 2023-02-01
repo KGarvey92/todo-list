@@ -19,15 +19,19 @@ function createSidebar() {
   // create nav that slides out when menu button clicked.
   const nav = document.createElement('nav');
   nav.classList.add('show-nav');
-  // Inbox and Project buttons.
+  // Inbox, Todos and Project buttons.
   const navBtns = document.createElement('ul');
   navBtns.classList.add('nav-btns');
   const inbox = document.createElement('li');
   inbox.setAttribute('id', 'nav-inbox');
   inbox.innerText = 'Inbox';
   navBtns.appendChild(inbox);
+  const todosBtn = document.createElement('li');
+  todosBtn.setAttribute('id', 'nav-todos');
+  todosBtn.innerText = 'All Todos';
+  navBtns.appendChild(todosBtn);
   const projectBtn = document.createElement('li');
-  projectBtn.setAttribute('id', 'nav-projects');
+  projectBtn.setAttribute('id', 'nav-projectBtn');
   projectBtn.innerText = 'Projects';
   navBtns.appendChild(projectBtn);
   nav.appendChild(navBtns);
