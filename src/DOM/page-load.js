@@ -78,6 +78,103 @@ function createFooter() {
   return footer;
 }
 
+function createTodoForm() {
+  const body = document.querySelector('body');
+
+  // Create overlay
+  const overlay = document.createElement('div');
+  overlay.setAttribute('id', 'overlay');
+  body.appendChild(overlay);
+
+  // Create form
+  const form = document.createElement('form');
+  form.setAttribute('id', 'todo-form');
+
+  // Create title input with label
+  const titleLabel = document.createElement('label');
+  titleLabel.setAttribute('for', 'title-input');
+  titleLabel.textContent = 'Todo:';
+  form.appendChild(titleLabel);
+
+  const titleInput = document.createElement('input');
+  titleInput.setAttribute('id', 'title-input');
+  titleInput.setAttribute('type', 'text');
+  form.appendChild(titleInput);
+
+  // Create due date input and label
+  const dueDateLabel = document.createElement('label');
+  dueDateLabel.setAttribute('for', 'due-date-input');
+  dueDateLabel.textContent = 'Due Date:';
+  form.appendChild(dueDateLabel);
+
+  const dueDateInput = document.createElement('input');
+  dueDateInput.setAttribute('id', 'due-date-input');
+  dueDateInput.setAttribute('type', 'date');
+  form.appendChild(dueDateInput);
+
+  // Create description input and label
+  const descriptionLabel = document.createElement('label');
+  descriptionLabel.setAttribute('for', 'description-input');
+  descriptionLabel.textContent = 'Description:';
+  form.appendChild(descriptionLabel);
+
+  const descriptionInput = document.createElement('input');
+  descriptionInput.setAttribute('id', 'description-input');
+  descriptionInput.setAttribute('type', 'text');
+  form.appendChild(descriptionInput);
+
+  // Create priority input and label
+  const priorityLabel = document.createElement('label');
+  priorityLabel.setAttribute('for', 'priority-select');
+  priorityLabel.textContent = 'Priority:';
+  form.appendChild(priorityLabel);
+
+  const prioritySelect = document.createElement('select');
+  prioritySelect.setAttribute('id', 'priority-select');
+
+  const highOption = document.createElement('option');
+  highOption.setAttribute('value', 'high');
+  highOption.textContent = 'High';
+  prioritySelect.appendChild(highOption);
+
+  const normalOption = document.createElement('option');
+  normalOption.setAttribute('value', 'normal');
+  normalOption.setAttribute('selected', '');
+  normalOption.textContent = 'Normal';
+  prioritySelect.appendChild(normalOption);
+
+  const lowOption = document.createElement('option');
+  lowOption.setAttribute('value', 'low');
+  lowOption.textContent = 'Low';
+  prioritySelect.appendChild(lowOption);
+
+  form.appendChild(prioritySelect);
+
+  // Create submit button
+  const submitButton = document.createElement('button');
+  submitButton.setAttribute('type', 'submit');
+  submitButton.textContent = 'Submit';
+  form.appendChild(submitButton);
+
+  // Append form to body
+  body.appendChild(form);
+
+  // Attach event listener to overlay to close form
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.style.display = 'none';
+    }
+  });
+
+  // Attach event listener to submit button to submit and close form
+  submitButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    // **call add todo function to be created later**
+    overlay.style.display = 'none';
+    form.style.display = 'none';
+  });
+}
+
 function loadPage() {
   const container = document.querySelector('#content');
   const header = createHeader();
@@ -89,6 +186,7 @@ function loadPage() {
   const sidebar = createSidebar();
   container.appendChild(sidebar);
   toggleSidebar();
+  createTodoForm();
 }
 
 export default loadPage;

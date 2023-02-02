@@ -6,6 +6,7 @@ class Todo {
     this.dueDate = format(dueDate, 'MM/dd/yyyy');
     this.description = description;
     this.priority = priority;
+    this.completed = false;
   }
 
   editTodo(targetProp, value) {

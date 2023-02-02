@@ -1,8 +1,3 @@
-// import Project from '../app/Project';
-
-// //create
-// const inbox = new Project
-
 function loadHome() {
   const main = document.querySelector('main');
   main.innerText = '';
