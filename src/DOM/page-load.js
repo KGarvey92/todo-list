@@ -163,6 +163,7 @@ function createTodoForm() {
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) {
       overlay.style.display = 'none';
+      form.style.display = 'none';
     }
   });
 
