@@ -90,44 +90,48 @@ function createTodoForm() {
   const form = document.createElement('form');
   form.setAttribute('id', 'todo-form');
 
+  // Create div for form elements
+  const formInputs = document.createElement('div');
+  formInputs.setAttribute('id', 'form-inputs');
+
   // Create title input with label
   const titleLabel = document.createElement('label');
   titleLabel.setAttribute('for', 'title-input');
   titleLabel.textContent = 'Todo:';
-  form.appendChild(titleLabel);
+  formInputs.appendChild(titleLabel);
 
   const titleInput = document.createElement('input');
   titleInput.setAttribute('id', 'title-input');
   titleInput.setAttribute('type', 'text');
-  form.appendChild(titleInput);
+  formInputs.appendChild(titleInput);
 
   // Create due date input and label
   const dueDateLabel = document.createElement('label');
   dueDateLabel.setAttribute('for', 'due-date-input');
   dueDateLabel.textContent = 'Due Date:';
-  form.appendChild(dueDateLabel);
+  formInputs.appendChild(dueDateLabel);
 
   const dueDateInput = document.createElement('input');
   dueDateInput.setAttribute('id', 'due-date-input');
   dueDateInput.setAttribute('type', 'date');
-  form.appendChild(dueDateInput);
+  formInputs.appendChild(dueDateInput);
 
   // Create description input and label
   const descriptionLabel = document.createElement('label');
   descriptionLabel.setAttribute('for', 'description-input');
   descriptionLabel.textContent = 'Description:';
-  form.appendChild(descriptionLabel);
+  formInputs.appendChild(descriptionLabel);
 
-  const descriptionInput = document.createElement('input');
+  const descriptionInput = document.createElement('textarea');
   descriptionInput.setAttribute('id', 'description-input');
-  descriptionInput.setAttribute('type', 'text');
-  form.appendChild(descriptionInput);
+  descriptionInput.setAttribute('rows', '3');
+  formInputs.appendChild(descriptionInput);
 
   // Create priority input and label
   const priorityLabel = document.createElement('label');
   priorityLabel.setAttribute('for', 'priority-select');
   priorityLabel.textContent = 'Priority:';
-  form.appendChild(priorityLabel);
+  formInputs.appendChild(priorityLabel);
 
   const prioritySelect = document.createElement('select');
   prioritySelect.setAttribute('id', 'priority-select');
@@ -148,7 +152,10 @@ function createTodoForm() {
   lowOption.textContent = 'Low';
   prioritySelect.appendChild(lowOption);
 
-  form.appendChild(prioritySelect);
+  formInputs.appendChild(prioritySelect);
+
+  // Append formInputs to form
+  form.appendChild(formInputs);
 
   // Create submit button
   const submitButton = document.createElement('button');
