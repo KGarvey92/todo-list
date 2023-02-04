@@ -101,6 +101,11 @@ nav li:hover {
     cursor: pointer;
 }
 
+nav li:active {
+    background-color: #D7C59B;
+    scale: 0.95;
+}
+
 .nav-projects {
     list-style-type: none;
     padding-left: 0px;
