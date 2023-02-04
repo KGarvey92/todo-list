@@ -170,6 +170,7 @@ footer > img:hover {
     z-index: 3;
     border: 5px solid #F5E5C0;
     border-radius: 10px;
+    max-width: 90vw;
 }
 
 #form-inputs {
