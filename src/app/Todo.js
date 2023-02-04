@@ -8,14 +8,6 @@ class Todo {
     this.priority = priority;
     this.completed = false;
   }
-
-  editTodo(targetProp, value) {
-    if (targetProp === 'dueDate') {
-      this[targetProp] = format(value, 'MM/dd/yyyy');
-    } else {
-      this[targetProp] = value;
-    }
-  }
 }
 
 export default Todo;
