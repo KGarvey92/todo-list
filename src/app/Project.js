@@ -1,4 +1,4 @@
-import format from 'date-fns';
+import format from 'date-fns/format';
 
 class Project {
   constructor(title, description = '') {
@@ -75,7 +75,7 @@ function removeProject(project) {
 
 // If there are no projects stored in local storage, initialize default 'none' project.
 if (projects.length === 0) {
-  addProject('none', 'Tasks without an assigned project');
+  addProject('Inbox', 'Tasks without an assigned project');
 }
 
 export {
