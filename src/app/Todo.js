@@ -1,10 +1,10 @@
-import format from 'date-fns';
+import format from 'date-fns/format';
 
 class Todo {
-  constructor(title, dueDate, description, priority) {
+  constructor(title, description, priority, dueDate = null) {
     this.title = title;
-    this.dueDate = format(dueDate, 'MM/dd/yyyy');
     this.description = description;
+    this.dueDate = dueDate ? format(dueDate, 'MM/dd/yyyy') : null;
     this.priority = priority;
     this.completed = false;
   }

@@ -1,4 +1,4 @@
-function loadProjects() {
+function displayProjects() {
   const main = document.querySelector('main');
   main.innerText = '';
   const heading = document.createElement('h1');
@@ -13,4 +13,4 @@ function loadProjects() {
   return main;
 }
 
-export default loadProjects;
+export default displayProjects;

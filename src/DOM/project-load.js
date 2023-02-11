@@ -14,6 +14,13 @@ function loadProject(project) {
   description.innerText = `${project.description}`;
   main.appendChild(description);
 
+  // Display first todo (later adapt to use a loop and display all todos)
+  const todo1 = document.createElement('div');
+  const title = document.createElement('p');
+  title.innerText = `${project.todos[0].title}`;
+  todo1.appendChild(title);
+  main.appendChild(todo1);
+
   // Create an add todo button
   const addTodoBtn = document.createElement('button');
   addTodoBtn.innerText = 'Add todo';

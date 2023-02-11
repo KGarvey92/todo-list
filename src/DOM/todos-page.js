@@ -1,4 +1,4 @@
-function loadTodos() {
+function displayTodos() {
   const main = document.querySelector('main');
   main.innerText = '';
   const heading = document.createElement('h1');
@@ -13,4 +13,4 @@ function loadTodos() {
   return main;
 }
 
-export default loadTodos;
+export default displayTodos;
