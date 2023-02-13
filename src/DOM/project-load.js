@@ -9,24 +9,19 @@ function addSubmitListener(e, project) {
   const description = document.querySelector('#description-input');
   const dueDate = document.querySelector('#due-date-input');
   const priority = document.querySelector('#priority-select');
-  console.log(title.value);
-  console.log(description.value);
-  console.log(dueDate.value);
-  console.log(priority.value);
 
   // Create new todo using input
-  // const todo = new Todo(title, description, dueDate, priority);
+  const todo = new Todo(title.value, description.value, priority.value, dueDate.value);
+  console.log(todo);
   // add todo to current project
-  // project.addTodo(todo);
-  // saveUpdates();
+  project.addTodo(todo);
+  saveUpdates();
+  console.log(project);
   // Reset form
   title.value = '';
   description.value = '';
   dueDate.value = '';
   priority.value = 'normal';
-  console.log(title.value);
-  console.log(description.value);
-  console.log(dueDate.value);
   // close form and remove overlay after submit
   const overlay = document.querySelector('#overlay');
   const form = document.querySelector('#todo-form');

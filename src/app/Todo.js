@@ -4,7 +4,7 @@ class Todo {
   constructor(title, description, priority, dueDate = null) {
     this.title = title;
     this.description = description;
-    this.dueDate = dueDate ? format(dueDate, 'MM/dd/yyyy') : null;
+    this.dueDate = dueDate ? format(new Date(dueDate), 'MM/dd/yyyy') : null;
     this.priority = priority;
     this.completed = false;
   }
