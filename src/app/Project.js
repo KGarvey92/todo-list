@@ -49,11 +49,14 @@ function loadProjects() {
   // If so map the properties over to new Project class to allow access to Project methods
   if (storedProjects !== null) {
     projects = JSON.parse(storedProjects);
-    projects = projects.map((project) => new Project(
-      project.title,
-      project.description,
-      project.todos,
-    ));
+    projects = projects.map((project) => {
+      const newProject = new Project(project.title, project.description);
+      project.todos.forEach((todo) => {
+        const newTodo = new Todo(todo.title, todo.description, todo.priority, todo.dueDate);
+        newProject.addTodo(newTodo);
+      });
+      return newProject;
+    });
   }
 
   // If there are no projects stored in local storage, initialize default 'none' project.

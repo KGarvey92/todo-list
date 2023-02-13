@@ -12,11 +12,9 @@ function addSubmitListener(e, project) {
 
   // Create new todo using input
   const todo = new Todo(title.value, description.value, priority.value, dueDate.value);
-  console.log(todo);
   // add todo to current project
   project.addTodo(todo);
   saveUpdates();
-  console.log(project);
   // Reset form
   title.value = '';
   description.value = '';
