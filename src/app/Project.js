@@ -52,7 +52,7 @@ function loadProjects() {
     projects = projects.map((project) => new Project(
       project.title,
       project.description,
-      project.tasks,
+      project.todos,
     ));
   }
 
