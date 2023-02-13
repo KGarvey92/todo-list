@@ -188,7 +188,7 @@ footer > img:hover {
     font-family: 'PT Sans', sans-serif;
 }
 
-input, select, textarea, button[type='submit'] {
+input, select, textarea, #submit-btn {
     outline: none;
     border: none;
     padding: 5px;
@@ -196,13 +196,13 @@ input, select, textarea, button[type='submit'] {
     border-radius: 10px;
 }
 
-button[type='submit'] {
+#submit-btn {
     cursor: pointer;
     padding: 10px;
     width: 100%;
 }
 
-button[type='submit']:active {
+#submit-btn:active {
     scale: 0.95;
     background-color: #D7C59B;
 }

@@ -2,10 +2,9 @@ import loadPage from '../DOM/page-load';
 import displayTodos from '../DOM/todos-page';
 import loadProject from '../DOM/project-load';
 import displayProjects from '../DOM/projects-page';
-import { loadProjects } from './Project';
+import { projects } from './Project';
 
 function init() {
-  const projects = loadProjects();
   const home = projects[0];
   loadPage();
   loadProject(home);

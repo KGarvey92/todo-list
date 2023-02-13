@@ -160,6 +160,7 @@ function createTodoForm() {
   // Create submit button
   const submitButton = document.createElement('button');
   submitButton.setAttribute('type', 'submit');
+  submitButton.setAttribute('id', 'submit-btn');
   submitButton.textContent = 'Submit';
   form.appendChild(submitButton);
 
@@ -172,14 +173,6 @@ function createTodoForm() {
       overlay.style.display = 'none';
       form.style.display = 'none';
     }
-  });
-
-  // Attach event listener to submit button to submit and close form
-  submitButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    // **call add todo function to be created later**
-    overlay.style.display = 'none';
-    form.style.display = 'none';
   });
 }
 

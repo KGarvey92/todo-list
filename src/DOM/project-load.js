@@ -1,3 +1,45 @@
+import { saveUpdates } from '../app/Project';
+import Todo from '../app/Todo';
+
+function addSubmitListener(e, project) {
+  // prevent default behaviour of submit button
+  e.preventDefault();
+  // Capture input
+  const title = document.querySelector('#title-input');
+  const description = document.querySelector('#description-input');
+  const dueDate = document.querySelector('#due-date-input');
+  const priority = document.querySelector('#priority-select');
+  console.log(title.value);
+  console.log(description.value);
+  console.log(dueDate.value);
+  console.log(priority.value);
+
+  // Create new todo using input
+  // const todo = new Todo(title, description, dueDate, priority);
+  // add todo to current project
+  // project.addTodo(todo);
+  // saveUpdates();
+  // Reset form
+  title.value = '';
+  description.value = '';
+  dueDate.value = '';
+  priority.value = 'normal';
+  console.log(title.value);
+  console.log(description.value);
+  console.log(dueDate.value);
+  // close form and remove overlay after submit
+  const overlay = document.querySelector('#overlay');
+  const form = document.querySelector('#todo-form');
+  overlay.style.display = 'none';
+  form.style.display = 'none';
+}
+
+function prepSubmitBtn(project) {
+  const submitButton = document.querySelector('#submit-btn');
+  submitButton.removeEventListener('click', addSubmitListener);
+  submitButton.addEventListener('click', (e) => addSubmitListener(e, project));
+}
+
 function loadProject(project) {
   // Clear content
   const main = document.querySelector('main');
@@ -33,6 +75,9 @@ function loadProject(project) {
     const form = document.querySelector('#todo-form');
     form.style.display = 'block';
   });
+
+  // Add functionality to submit button
+  prepSubmitBtn(project);
 }
 
 export default loadProject;
