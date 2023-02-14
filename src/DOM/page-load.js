@@ -53,8 +53,6 @@ function populateSidebar() {
   const nav = document.querySelector('nav');
   const projectList = document.createElement('ul');
   projectList.classList.add('nav-projects');
-  // **for each project in list of projects add li,
-  // match innerText to title, attach event listener and   append**
 
   // Add new projects via + button
   const addProject = document.createElement('li');
@@ -75,6 +73,17 @@ function populateSidebar() {
     }
   });
   projectList.appendChild(addProject);
+
+  // List each project already in projects array
+  projects.forEach((project) => {
+    const projectBtn = document.createElement('li');
+    projectBtn.classList.add('nav-projects');
+    projectBtn.innerText = project.title;
+    projectBtn.addEventListener('click', () => {
+      loadProject(project);
+    });
+    projectList.insertBefore(projectBtn, addProject);
+  });
 
   // append all projects and + btn to sidebar
   nav.appendChild(projectList);
