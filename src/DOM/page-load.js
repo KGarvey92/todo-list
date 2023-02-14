@@ -1,3 +1,8 @@
+import displayTodos from './todos-page';
+import loadProject from './project-load';
+import displayProjects from './projects-page';
+import { projects } from '../app/Project';
+
 function createHeader() {
   const header = document.createElement('header');
   const logo = document.createElement('img');
@@ -35,17 +40,35 @@ function createSidebar() {
   projectBtn.innerText = 'Projects';
   navBtns.appendChild(projectBtn);
   nav.appendChild(navBtns);
-  // List of different projects
-  const projectList = document.createElement('ul');
-  projectList.classList.add('nav-projects');
-  // **for each project in list of projects add li, match innerText to title and append**
-  const addProject = document.createElement('li');
-  addProject.innerText = '+';
-  projectList.appendChild(addProject);
-  nav.appendChild(projectList);
+
+  // Event listeners for nav buttons
+  inbox.addEventListener('click', () => loadProject(projects[0]));
+  todosBtn.addEventListener('click', displayTodos);
+  projectBtn.addEventListener('click', displayProjects);
 
   return nav;
 }
+
+function populateSidebar() {
+  const nav = document.querySelector('nav');
+  const projectList = document.createElement('ul');
+  projectList.classList.add('nav-projects');
+  // **for each project in list of projects add li,
+  // match innerText to title, attach event listener and   append**
+  const addProject = document.createElement('li');
+  addProject.innerText = '+';
+  addProject.addEventListener('click', () => {
+    const input = prompt('Give your new project a name.');
+    console.log(input);
+  });
+  projectList.appendChild(addProject);
+  nav.appendChild(projectList);
+}
+
+// ** Later replace prompt with popup form to create project **
+// function createProjectForm() {
+
+// }
 
 function toggleSidebar() {
   const hamburger = document.querySelector('.hamburger');
@@ -186,6 +209,7 @@ function loadPage() {
   container.appendChild(footer);
   const sidebar = createSidebar();
   container.appendChild(sidebar);
+  populateSidebar();
   toggleSidebar();
   createTodoForm();
 }
