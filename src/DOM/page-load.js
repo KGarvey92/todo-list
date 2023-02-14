@@ -75,7 +75,10 @@ function populateSidebar() {
   projectList.appendChild(addProject);
 
   // List each project already in projects array
-  projects.forEach((project) => {
+  projects.forEach((project, index) => {
+    if (index === 0) {
+      return;
+    }
     const projectBtn = document.createElement('li');
     projectBtn.classList.add('nav-projects');
     projectBtn.innerText = project.title;
