@@ -1,7 +1,7 @@
 import displayTodos from './todos-page';
 import loadProject from './project-load';
 import displayProjects from './projects-page';
-import { projects } from '../app/Project';
+import { Project, projects, saveUpdates } from '../app/Project';
 
 function createHeader() {
   const header = document.createElement('header');
@@ -55,13 +55,28 @@ function populateSidebar() {
   projectList.classList.add('nav-projects');
   // **for each project in list of projects add li,
   // match innerText to title, attach event listener and   append**
+
+  // Add new projects via + button
   const addProject = document.createElement('li');
   addProject.innerText = '+';
   addProject.addEventListener('click', () => {
     const input = prompt('Give your new project a name.');
-    console.log(input);
+    if (input !== null) {
+      const newProject = new Project(input);
+      projects.push(newProject);
+      saveUpdates();
+      const newProjectBtn = document.createElement('li');
+      newProjectBtn.classList.add('nav-projects');
+      newProjectBtn.innerText = `${input}`;
+      newProjectBtn.addEventListener('click', () => {
+        loadProject(newProject);
+      });
+      projectList.insertBefore(newProjectBtn, addProject);
+    }
   });
   projectList.appendChild(addProject);
+
+  // append all projects and + btn to sidebar
   nav.appendChild(projectList);
 }
 
