@@ -196,6 +196,17 @@ input, select, textarea, #submit-btn {
     border-radius: 10px;
 }
 
+.todo-div {
+    display: flex;
+    padding-left: 8px;
+    padding-right: 8px;
+    justify-content: space-between;
+    border: 5px solid #4CD4CB;
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
 #submit-btn {
     cursor: pointer;
     padding: 10px;
