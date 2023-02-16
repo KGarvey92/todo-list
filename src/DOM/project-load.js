@@ -1,7 +1,7 @@
 import { saveUpdates } from '../app/Project';
 import Todo from '../app/Todo';
 
-function addSubmitListener(e, project) {
+function submitData(e, project) {
   e.preventDefault();
   const title = document.querySelector('#title-input');
   const description = document.querySelector('#description-input');
@@ -26,9 +26,12 @@ function addSubmitListener(e, project) {
 function prepSubmitBtn(project) {
   const submitButton = document.querySelector('#submit-btn');
 
-  submitButton.addEventListener('click', (e) => {
-    addSubmitListener(e, project);
-  }, { once: true });
+  const clickHandler = (e) => {
+    submitData(e, project);
+    submitButton.removeEventListener('click', clickHandler);
+  };
+
+  submitButton.addEventListener('click', clickHandler);
 }
 
 function displayTodos(project) {
