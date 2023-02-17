@@ -1,38 +1,4 @@
-import { saveUpdates } from '../app/Project';
-import Todo from '../app/Todo';
-
-function submitData(e, project) {
-  e.preventDefault();
-  const title = document.querySelector('#title-input');
-  const description = document.querySelector('#description-input');
-  const dueDate = document.querySelector('#due-date-input');
-  const priority = document.querySelector('#priority-select');
-
-  const todo = new Todo(title.value, description.value, priority.value, dueDate.value);
-  project.addTodo(todo);
-  saveUpdates();
-
-  title.value = '';
-  description.value = '';
-  dueDate.value = '';
-  priority.value = 'normal';
-
-  const overlay = document.querySelector('#overlay');
-  const form = document.querySelector('#todo-form');
-  overlay.style.display = 'none';
-  form.style.display = 'none';
-}
-
-function prepSubmitBtn(project) {
-  const submitButton = document.querySelector('#submit-btn');
-
-  const clickHandler = (e) => {
-    submitData(e, project);
-    submitButton.removeEventListener('click', clickHandler);
-  };
-
-  submitButton.addEventListener('click', clickHandler);
-}
+// import Todo from '../app/Todo';
 
 function displayTodos(project) {
   const main = document.querySelector('main');
@@ -107,9 +73,6 @@ function loadProject(project) {
     const form = document.querySelector('#todo-form');
     form.style.display = 'block';
   });
-
-  // Add functionality to submit button
-  prepSubmitBtn(project);
 }
 
 export default loadProject;

@@ -1,5 +1,7 @@
 import format from 'date-fns/format';
-import Todo from './Todo';
+import loadProject from '../DOM/project-load';
+import { Todo } from './Todo';
+import getProject from './Helpers';
 
 class Project {
   constructor(title, description = '') {
@@ -30,10 +32,8 @@ class Project {
       if (this.todos[i].title === todo) {
         if (targetProp === 'dueDate') {
           this.todos[i][targetProp] = format(value, 'MM/dd/yyyy');
-          this.saveUpdates();
         } else {
           this.todos[i][targetProp] = value;
-          this.saveUpdates();
         }
       }
     }
@@ -74,8 +74,14 @@ function loadProjects() {
 
 const projects = loadProjects();
 
-function saveUpdates() {
+function saveUpdates(refresh = null) {
   localStorage.setItem('projects', JSON.stringify(projects));
+  if (refresh) {
+    const project = getProject();
+    if (project) {
+      loadProject(project);
+    }
+  }
 }
 
 // Add new project to project array and store in JSON

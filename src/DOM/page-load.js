@@ -2,6 +2,7 @@ import displayTodos from './todos-page';
 import loadProject from './project-load';
 import displayProjects from './projects-page';
 import { Project, projects, saveUpdates } from '../app/Project';
+import { submitnewTodo } from '../app/Todo';
 
 function createHeader() {
   const header = document.createElement('header');
@@ -42,7 +43,9 @@ function createSidebar() {
   nav.appendChild(navBtns);
 
   // Event listeners for nav buttons
-  inbox.addEventListener('click', () => loadProject(projects[0]));
+  inbox.addEventListener('click', () => {
+    loadProject(projects[0]);
+  });
   todosBtn.addEventListener('click', displayTodos);
   projectBtn.addEventListener('click', displayProjects);
 
@@ -214,6 +217,11 @@ function createTodoForm() {
   submitButton.textContent = 'Submit';
   form.appendChild(submitButton);
 
+  // Attach event listener to form
+  submitButton.addEventListener('click', (e) => {
+    submitnewTodo(e);
+    saveUpdates('refresh');
+  });
   // Append form to body
   body.appendChild(form);
 
