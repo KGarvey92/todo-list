@@ -149,7 +149,7 @@ footer {
     font-weight: bold;
 }
 
-footer > img:hover {
+footer > img:hover, .add-todo-btn:hover, .todo-div:hover {
     cursor: pointer;
     scale: 1.1;
     animation: 0.4s shake;
@@ -197,6 +197,14 @@ input, select, textarea, #submit-btn {
     padding: 5px;
     background-color: #F5E5C0;
     border-radius: 10px;
+}
+
+.add-todo-btn {
+    border: 5px solid #4CD4CB;
+    background-color: inherit;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.2rem;
 }
 
 #submit-btn {
