@@ -73,6 +73,7 @@ function populateSidebar() {
         loadProject(newProject);
       });
       projectList.insertBefore(newProjectBtn, addProject);
+      loadProject(newProject);
     }
   });
   projectList.appendChild(addProject);
