@@ -64,6 +64,7 @@ function loadProject(project) {
   // Create an add todo button
   const addTodoBtn = document.createElement('button');
   addTodoBtn.innerText = 'Add todo';
+  addTodoBtn.classList.add('add-todo-btn');
   main.appendChild(addTodoBtn);
 
   // Event listener for add todo button
