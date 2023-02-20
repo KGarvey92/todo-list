@@ -25,7 +25,6 @@ function displayTodos(project) {
 
     // Check if todo is already completed
     if (project.todos[i].completed === true) {
-      console.log('');
       todo.classList.add('line-through');
     }
     todoDiv.appendChild(todo);
@@ -50,6 +49,12 @@ function displayTodos(project) {
     todoDiv.appendChild(removeBtn);
 
     // TODO: event listener to call removeTodo method on click.
+    removeBtn.addEventListener('click', () => {
+      if (window.confirm('Are you sure you wish to delete this todo?')) {
+        project.removeTodo(project.todos[i].title);
+        saveUpdates('refresh');
+      }
+    });
 
     // Append todo to main.
     main.appendChild(todoDiv);
