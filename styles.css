@@ -40,11 +40,6 @@ header {
     margin-right: 20px;
 }
 
-.hamburger:hover {
-    cursor: pointer;
-    animation: 0.4s shake;
-}
-
 @keyframes slideIn {
     from {
         transform: translateX(-100%);
@@ -149,11 +144,19 @@ footer {
     font-weight: bold;
 }
 
-footer > img:hover, .add-todo-btn:hover, .todo-div:hover {
+footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover {
     cursor: pointer;
     scale: 1.1;
     animation: 0.4s shake;
+}
 
+.todo-div:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.line-through {
+    text-decoration: line-through;
 }
 
 #overlay {
