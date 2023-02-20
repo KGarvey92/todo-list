@@ -1,13 +1,18 @@
+/* eslint-disable import/no-cycle */
 import format from 'date-fns/format';
 import getProject from './Helpers';
 
 class Todo {
-  constructor(title, description, priority, dueDate = null) {
+  constructor(title, description, priority, dueDate = null, completionStatus = false) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate ? format(new Date(dueDate), 'MM/dd/yyyy') : null;
     this.priority = priority;
-    this.completed = false;
+    if (completionStatus === true) {
+      this.completed = true;
+    } else {
+      this.completed = false;
+    }
   }
 }
 

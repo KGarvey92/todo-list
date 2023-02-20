@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import format from 'date-fns/format';
 import loadProject from '../DOM/project-load';
 import { Todo } from './Todo';
@@ -52,7 +53,13 @@ function loadProjects() {
     projects = projects.map((project) => {
       const newProject = new Project(project.title, project.description);
       project.todos.forEach((todo) => {
-        const newTodo = new Todo(todo.title, todo.description, todo.priority, todo.dueDate);
+        const newTodo = new Todo(
+          todo.title,
+          todo.description,
+          todo.priority,
+          todo.dueDate,
+          todo.completed,
+        );
         newProject.addTodo(newTodo);
       });
       return newProject;
