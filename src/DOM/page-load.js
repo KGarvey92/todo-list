@@ -245,13 +245,17 @@ function createTodoDetails() {
   container.setAttribute('id', 'todo-details');
 
   // Create elements and leave blank for now.
+  const titleContainer = document.createElement('div');
+  titleContainer.setAttribute('id', 'todo-details-title-container');
+  container.appendChild(titleContainer);
+
   const title = document.createElement('strong');
   title.setAttribute('id', 'todo-details-title');
-  container.appendChild(title);
+  titleContainer.appendChild(title);
 
   const dueDate = document.createElement('p');
   dueDate.setAttribute('id', 'todo-details-due-date');
-  container.appendChild(title);
+  container.appendChild(dueDate);
 
   const description = document.createElement('p');
   description.setAttribute('id', 'todo-details-description');
@@ -261,11 +265,14 @@ function createTodoDetails() {
   priority.setAttribute('id', 'todo-details-priority');
   container.appendChild(priority);
 
-  // Create a save button
-  const saveBtn = document.createElement('button');
-  saveBtn.setAttribute('id', 'todo-details-save-btn');
-  saveBtn.innerText = 'Save';
-  container.appendChild(saveBtn);
+  const moveBtnContainer = document.createElement('div');
+  moveBtnContainer.setAttribute('id', 'move-btn-container');
+  container.appendChild(moveBtnContainer);
+
+  const moveBtn = document.createElement('button');
+  moveBtn.setAttribute('id', 'todo-details-move-btn');
+  moveBtn.innerText = 'Move';
+  moveBtnContainer.appendChild(moveBtn);
 
   // Add the container to the body element
   body.appendChild(container);

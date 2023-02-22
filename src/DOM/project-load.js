@@ -7,6 +7,28 @@ function showTodoDetails(todo) {
   // Fill in elements with todo details
   const title = document.querySelector('#todo-details-title');
   title.innerText = todo.title;
+
+  const dueDate = document.querySelector('#todo-details-due-date');
+  if (todo.dueDate) {
+    dueDate.innerText = `Due on: ${todo.dueDate}`;
+    dueDate.style.fontStyle = 'normal';
+  } else {
+    dueDate.innerText = 'Set a due date';
+    dueDate.style.fontStyle = 'italic';
+  }
+
+  const description = document.querySelector('#todo-details-description');
+  if (todo.description) {
+    description.innerText = todo.description;
+    description.style.fontStyle = 'normal';
+  } else {
+    description.innerText = 'Add a description';
+    description.style.fontStyle = 'italic';
+  }
+
+  const priority = document.querySelector('#todo-details-priority');
+  priority.innerText = `Priority: ${todo.priority}`;
+
   // Display todo details div
   const detailsDiv = document.querySelector('#todo-details');
   const overlay = document.querySelector('#overlay');
@@ -32,6 +54,7 @@ function displayTodos(project) {
 
     // Create <p> to hold todo title
     const todo = document.createElement('p');
+    todo.classList.add('todo-title');
     todo.innerText = `${project.todos[i].title}`;
 
     // Check if todo is already completed
@@ -49,8 +72,7 @@ function displayTodos(project) {
       saveUpdates();
     });
 
-    // TODO: Add event listener to todo to expand info
-    // call a function that returns a popup containing details and edit btn.
+    // Add event listener to todo to expand info
     todo.addEventListener('click', () => {
       showTodoDetails(project.todos[i]);
     });
