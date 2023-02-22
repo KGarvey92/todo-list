@@ -170,7 +170,7 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover 
     z-index: 2;
 }
 
-#todo-form {
+#todo-form, #todo-details {
     display: none;
     position: fixed;
     top: 50%;
@@ -178,10 +178,18 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover 
     translate: -50% -50%;
     background-color: #4CD4CB;
     padding: 20px;
-    z-index: 3;
     border: 5px solid #F5E5C0;
     border-radius: 10px;
     max-width: 90vw;
+    font-family: 'PT Sans', sans-serif;
+}
+
+#todo-details {
+    z-index: 3;
+}
+
+#todo-form {
+    z-index: 4;
 }
 
 #form-inputs {
@@ -191,7 +199,6 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover 
     row-gap: 10px;
     margin-bottom: 10px;
     align-items: center;
-    font-family: 'PT Sans', sans-serif;
 }
 
 input, select, textarea, #submit-btn {
