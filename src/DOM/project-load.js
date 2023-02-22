@@ -3,6 +3,17 @@
 
 import { saveUpdates } from '../app/Project';
 
+function showTodoDetails(todo) {
+  // Fill in elements with todo details
+  const title = document.querySelector('#todo-details-title');
+  title.innerText = todo.title;
+  // Display todo details div
+  const detailsDiv = document.querySelector('#todo-details');
+  const overlay = document.querySelector('#overlay');
+  detailsDiv.style.display = 'block';
+  overlay.style.display = 'block';
+}
+
 function displayTodos(project) {
   const main = document.querySelector('main');
 
@@ -38,8 +49,11 @@ function displayTodos(project) {
       saveUpdates();
     });
 
-    // TODO: Add event listener to todo title to open up
-    // a todo display popup that shows duedate, description and allows editing.
+    // TODO: Add event listener to todo to expand info
+    // call a function that returns a popup containing details and edit btn.
+    todo.addEventListener('click', () => {
+      showTodoDetails(project.todos[i]);
+    });
 
     // Create remove icon
     const removeBtn = document.createElement('img');
@@ -48,8 +62,9 @@ function displayTodos(project) {
     removeBtn.classList.add('todo-div-btns');
     todoDiv.appendChild(removeBtn);
 
-    // TODO: event listener to call removeTodo method on click.
+    // Event listener to call removeTodo method on click.
     removeBtn.addEventListener('click', () => {
+      // eslint-disable-next-line no-alert
       if (window.confirm('Are you sure you wish to delete this todo?')) {
         project.removeTodo(project.todos[i].title);
         saveUpdates('refresh');

@@ -231,8 +231,44 @@ function createTodoForm() {
     if (e.target === overlay) {
       overlay.style.display = 'none';
       form.style.display = 'none';
+      // adapt to also work with todo-details popup
+      const todoDetails = document.querySelector('#todo-details');
+      todoDetails.style.display = 'none';
     }
   });
+}
+
+function createTodoDetails() {
+  // Select body element and create container
+  const body = document.querySelector('body');
+  const container = document.createElement('div');
+  container.setAttribute('id', 'todo-details');
+
+  // Create elements and leave blank for now.
+  const title = document.createElement('strong');
+  title.setAttribute('id', 'todo-details-title');
+  container.appendChild(title);
+
+  const dueDate = document.createElement('p');
+  dueDate.setAttribute('id', 'todo-details-due-date');
+  container.appendChild(title);
+
+  const description = document.createElement('p');
+  description.setAttribute('id', 'todo-details-description');
+  container.appendChild(description);
+
+  const priority = document.createElement('p');
+  priority.setAttribute('id', 'todo-details-priority');
+  container.appendChild(priority);
+
+  // Create a save button
+  const saveBtn = document.createElement('button');
+  saveBtn.setAttribute('id', 'todo-details-save-btn');
+  saveBtn.innerText = 'Save';
+  container.appendChild(saveBtn);
+
+  // Add the container to the body element
+  body.appendChild(container);
 }
 
 function loadPage() {
@@ -248,6 +284,7 @@ function loadPage() {
   populateSidebar();
   toggleSidebar();
   createTodoForm();
+  createTodoDetails();
 }
 
 export default loadPage;
