@@ -155,6 +155,11 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover 
     scale: 1.1;
 }
 
+.todo-title:hover {
+    font-weight: bold;
+    scale: 1.1;
+}
+
 .line-through {
     text-decoration: line-through;
 }
@@ -181,12 +186,23 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover 
     border: 5px solid #F5E5C0;
     border-radius: 10px;
     max-width: 90vw;
+    min-width: 300px;
     font-family: 'PT Sans', sans-serif;
 }
 
 #todo-details {
     z-index: 3;
 }
+
+#todo-details-title-container, #move-btn-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+#todo-details-move-btn {
+text-align: center;
+}
+  
 
 #todo-form {
     z-index: 4;
