@@ -28,13 +28,20 @@ class Project {
     this[targetProp] = value;
   }
 
-  editTodo(todo, targetProp, value) {
+  editTodo(todoName, targetProp, value) {
     for (let i = 0; i < this.todos.length; i += 1) {
-      if (this.todos[i].title === todo) {
+      if (this.todos[i].title === todoName) {
         if (targetProp === 'dueDate') {
-          this.todos[i][targetProp] = format(value, 'MM/dd/yyyy');
+          if (value) {
+            this.todos[i].dueDate = format(new Date(value), 'MM/dd/yyyy');
+            break;
+          } else {
+            this.todos[i].dueDate = null;
+            break;
+          }
         } else {
           this.todos[i][targetProp] = value;
+          break;
         }
       }
     }

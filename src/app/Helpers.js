@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { projects } from './Project';
 
 function getProject() {

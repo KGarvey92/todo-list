@@ -1,8 +1,10 @@
+import format from 'date-fns/format';
 import displayTodos from './todos-page';
 import loadProject from './project-load';
 import displayProjects from './projects-page';
 import { Project, projects, saveUpdates } from '../app/Project';
 import { submitnewTodo } from '../app/Todo';
+import getProject from '../app/Helpers';
 
 function createHeader() {
   const header = document.createElement('header');
@@ -279,7 +281,7 @@ function createTodoDetails() {
   newDateContainer.appendChild(datePicker);
 
   const newDateBtn = document.createElement('button');
-  newDateBtn.innerText = 'Change date';
+  newDateBtn.innerText = 'Confirm';
   newDateContainer.appendChild(newDateBtn);
 
   const description = document.createElement('p');
@@ -304,6 +306,19 @@ function createTodoDetails() {
   // Show date picker
   dateImg.addEventListener('click', () => {
     newDateContainer.classList.toggle('hidden');
+  });
+
+  newDateBtn.addEventListener('click', () => {
+    const project = getProject();
+    project.editTodo(title.innerText, 'dueDate', datePicker.value);
+    if (datePicker.value) {
+      dueDate.innerText = format(new Date(datePicker.value), 'MM/dd/yyyy');
+      dueDate.style.fontStyle = 'normal';
+    } else {
+      dueDate.innerText = 'Set a due date';
+      dueDate.style.fontStyle = 'italic';
+    }
+    saveUpdates('refresh');
   });
 
   // Add the container to the body element
