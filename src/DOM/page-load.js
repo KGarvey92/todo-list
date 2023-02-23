@@ -234,6 +234,8 @@ function createTodoForm() {
       // adapt to also work with todo-details popup
       const todoDetails = document.querySelector('#todo-details');
       todoDetails.style.display = 'none';
+      const newDateContainer = document.querySelector('#new-date-container');
+      newDateContainer.classList.add('hidden');
     }
   });
 }
@@ -253,9 +255,32 @@ function createTodoDetails() {
   title.setAttribute('id', 'todo-details-title');
   titleContainer.appendChild(title);
 
+  const dateContainer = document.createElement('div');
+  dateContainer.setAttribute('id', 'todo-details-date-container');
+  container.appendChild(dateContainer);
+
   const dueDate = document.createElement('p');
   dueDate.setAttribute('id', 'todo-details-due-date');
-  container.appendChild(dueDate);
+  dateContainer.appendChild(dueDate);
+
+  const dateImg = document.createElement('img');
+  dateImg.setAttribute('src', 'images/icons/calendar.svg');
+  dateImg.setAttribute('alt', 'Calendar icon');
+  dateContainer.appendChild(dateImg);
+
+  const newDateContainer = document.createElement('div');
+  newDateContainer.setAttribute('id', 'new-date-container');
+  newDateContainer.classList.add('hidden');
+  container.appendChild(newDateContainer);
+
+  const datePicker = document.createElement('input');
+  datePicker.setAttribute('type', 'date');
+  datePicker.setAttribute('id', 'new-date-picker');
+  newDateContainer.appendChild(datePicker);
+
+  const newDateBtn = document.createElement('button');
+  newDateBtn.innerText = 'Change date';
+  newDateContainer.appendChild(newDateBtn);
 
   const description = document.createElement('p');
   description.setAttribute('id', 'todo-details-description');
@@ -273,6 +298,13 @@ function createTodoDetails() {
   moveBtn.setAttribute('id', 'todo-details-move-btn');
   moveBtn.innerText = 'Move';
   moveBtnContainer.appendChild(moveBtn);
+
+  // Add event listeners to edit todo info
+
+  // Show date picker
+  dateImg.addEventListener('click', () => {
+    newDateContainer.classList.toggle('hidden');
+  });
 
   // Add the container to the body element
   body.appendChild(container);

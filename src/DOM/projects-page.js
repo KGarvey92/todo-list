@@ -7,7 +7,7 @@ function displayProjects() {
   main.appendChild(heading);
   const sample = document.createElement('div');
   sample.classList.add('projects');
-  sample.innerText = 'Example project here';
+  sample.innerText = 'Feature coming soon';
   main.appendChild(sample);
 
   return main;

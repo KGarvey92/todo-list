@@ -144,7 +144,7 @@ footer {
     font-weight: bold;
 }
 
-footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover {
+footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover, #todo-details-date-container img:hover {
     cursor: pointer;
     scale: 1.1;
     animation: 0.4s shake;
@@ -194,11 +194,16 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover 
     z-index: 3;
 }
 
-#todo-details-title-container, #move-btn-container {
+#todo-details-title-container, #move-btn-container, #todo-details-date-container, #new-date-container {
     display: flex;
     justify-content: center;
+    gap: 8px;
   }
-  
+
+.hidden {
+    visibility: hidden;
+}
+
 #todo-details-move-btn {
 text-align: center;
 }

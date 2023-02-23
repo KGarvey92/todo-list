@@ -7,7 +7,7 @@ function displayTodos() {
   main.appendChild(heading);
   const sample = document.createElement('div');
   sample.classList.add('tasks');
-  sample.innerText = 'Example todos here';
+  sample.innerText = 'Feature coming soon';
   main.appendChild(sample);
 
   return main;
