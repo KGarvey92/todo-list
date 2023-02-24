@@ -91,12 +91,18 @@ nav {
     padding: 5px;
 }
 
+#todo-details-description, #priority-container {
+    border: 5px solid #F5E5C0;
+    padding: 5px;
+    border-radius: 10px;
+}
+
 nav li:hover {
     background-color: #F5E5C0;
     cursor: pointer;
 }
 
-nav li:active {
+nav li:active, #todo-details-description:active, #submit-btn:active, #todo-details-move-btn:active, #new-date-container button:active {
     background-color: #D7C59B;
     scale: 0.95;
 }
@@ -125,9 +131,6 @@ main {
     align-items: center;
 }
 
-/* .content-headings, .project-description, .todo-div {
-  text-align: center;
-} */
 
 footer {
     grid-area: footer;
@@ -144,7 +147,7 @@ footer {
     font-weight: bold;
 }
 
-footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover, #todo-details-date-container img:hover {
+footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover, #todo-details-date-container img:hover, #priority-container img:hover {
     cursor: pointer;
     scale: 1.1;
     animation: 0.4s shake;
@@ -158,6 +161,11 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover,
 .todo-title:hover {
     font-weight: bold;
     scale: 1.1;
+}
+
+#todo-details-description:hover, #priority-container:hover {
+    scale: 1.05;
+    cursor: pointer;
 }
 
 .line-through {
@@ -194,7 +202,15 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover,
     z-index: 3;
 }
 
-#todo-details-title-container, #move-btn-container, #todo-details-date-container, #new-date-container {
+#todo-details-title {
+    font-size: 1.3rem;
+}
+
+#todo-details-description {
+    text-align: center;
+}
+
+#todo-details-title-container, #move-btn-container, #todo-details-date-container, #new-date-container, #priority-container {
     display: flex;
     justify-content: center;
     gap: 8px;
@@ -206,6 +222,7 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover,
 
 #todo-details-move-btn {
 text-align: center;
+margin-top: 1rem;
 }
   
 
@@ -222,7 +239,7 @@ text-align: center;
     align-items: center;
 }
 
-input, select, textarea, #submit-btn {
+input, select, textarea, #submit-btn, #todo-details-move-btn, #new-date-container button {
     outline: none;
     border: none;
     padding: 5px;
@@ -237,17 +254,16 @@ input, select, textarea, #submit-btn {
     padding: 10px 40px;
     font-size: 1.2rem;
     font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#submit-btn, #todo-details-move-btn, #new-date-container button {
+    cursor: pointer;
+    padding: 10px 20px;
 }
 
 #submit-btn {
-    cursor: pointer;
-    padding: 10px;
     width: 100%;
-}
-
-#submit-btn:active {
-    scale: 0.95;
-    background-color: #D7C59B;
 }
 
 .todo-div {
