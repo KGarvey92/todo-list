@@ -217,7 +217,7 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover,
   }
 
 .hidden {
-    visibility: hidden;
+    display: none;
 }
 
 #todo-details-move-btn {
