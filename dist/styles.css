@@ -91,7 +91,7 @@ nav {
     padding: 5px;
 }
 
-#todo-details-description, #priority-container {
+#todo-description-container, #priority-container {
     border: 5px solid #F5E5C0;
     padding: 5px;
     border-radius: 10px;
@@ -102,7 +102,7 @@ nav li:hover {
     cursor: pointer;
 }
 
-nav li:active, #todo-details-description:active, #submit-btn:active, #todo-details-move-btn:active, #new-date-container button:active {
+nav li:active, #submit-btn:active, #todo-details-move-btn:active, #new-date-container button:active {
     background-color: #D7C59B;
     scale: 0.95;
 }
@@ -147,7 +147,7 @@ footer {
     font-weight: bold;
 }
 
-footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover, #todo-details-date-container img:hover, #priority-container img:hover {
+footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover, #todo-details-date-container img:hover, #priority-container img:hover, #todo-description-container img:hover {
     cursor: pointer;
     scale: 1.1;
     animation: 0.4s shake;
@@ -161,11 +161,6 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover,
 .todo-title:hover {
     font-weight: bold;
     scale: 1.1;
-}
-
-#todo-details-description:hover, #priority-container:hover {
-    scale: 1.05;
-    cursor: pointer;
 }
 
 .line-through {
@@ -204,10 +199,15 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover,
 
 #todo-details-title {
     font-size: 1.3rem;
+    text-decoration: underline;
 }
 
-#todo-details-description {
-    text-align: center;
+#todo-description-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 8px;
+    margin-top: 8px;
 }
 
 #todo-details-title-container, #move-btn-container, #todo-details-date-container, #new-date-container, #priority-container {

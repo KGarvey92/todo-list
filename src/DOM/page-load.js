@@ -284,9 +284,19 @@ function createTodoDetails() {
   newDateBtn.innerText = 'Confirm';
   newDateContainer.appendChild(newDateBtn);
 
+  const descriptionContainer = document.createElement('div');
+  descriptionContainer.setAttribute('id', 'todo-description-container');
+
   const description = document.createElement('p');
   description.setAttribute('id', 'todo-details-description');
-  container.appendChild(description);
+  descriptionContainer.appendChild(description);
+
+  const editBtn = document.createElement('img');
+  editBtn.setAttribute('src', 'images/icons/edit.svg');
+  editBtn.setAttribute('alt', 'edit description icon');
+  descriptionContainer.appendChild(editBtn);
+
+  container.appendChild(descriptionContainer);
 
   const priorityContainer = document.createElement('div');
   priorityContainer.setAttribute('id', 'priority-container');
@@ -305,7 +315,6 @@ function createTodoDetails() {
   downArrow.setAttribute('src', 'images/icons/chevrons-down.svg');
   downArrow.setAttribute('alt', 'increase priority icon');
   priorityContainer.appendChild(downArrow);
-
 
   const moveBtnContainer = document.createElement('div');
   moveBtnContainer.setAttribute('id', 'move-btn-container');
