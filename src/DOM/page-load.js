@@ -288,9 +288,24 @@ function createTodoDetails() {
   description.setAttribute('id', 'todo-details-description');
   container.appendChild(description);
 
+  const priorityContainer = document.createElement('div');
+  priorityContainer.setAttribute('id', 'priority-container');
+  container.appendChild(priorityContainer);
+
   const priority = document.createElement('p');
   priority.setAttribute('id', 'todo-details-priority');
-  container.appendChild(priority);
+  priorityContainer.appendChild(priority);
+
+  const upArrow = document.createElement('img');
+  upArrow.setAttribute('src', 'images/icons/chevrons-up.svg');
+  upArrow.setAttribute('alt', 'increase priority icon');
+  priorityContainer.appendChild(upArrow);
+
+  const downArrow = document.createElement('img');
+  downArrow.setAttribute('src', 'images/icons/chevrons-down.svg');
+  downArrow.setAttribute('alt', 'increase priority icon');
+  priorityContainer.appendChild(downArrow);
+
 
   const moveBtnContainer = document.createElement('div');
   moveBtnContainer.setAttribute('id', 'move-btn-container');
