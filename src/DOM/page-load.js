@@ -236,8 +236,8 @@ function createTodoForm() {
       // adapt to also work with todo-details popup
       const todoDetails = document.querySelector('#todo-details');
       todoDetails.style.display = 'none';
-      const newDateContainer = document.querySelector('#new-date-container');
-      newDateContainer.classList.add('hidden');
+      const hiddenContainer = document.querySelector('#todo-hidden-container');
+      hiddenContainer.classList.add('hidden');
     }
   });
 }
@@ -270,10 +270,15 @@ function createTodoDetails() {
   dateImg.setAttribute('alt', 'Calendar icon');
   dateContainer.appendChild(dateImg);
 
+  const hiddenContainer = document.createElement('div');
+  hiddenContainer.setAttribute('id', 'todo-hidden-container');
+  hiddenContainer.classList.add('hidden');
+  container.appendChild(hiddenContainer);
+
   const newDateContainer = document.createElement('div');
   newDateContainer.setAttribute('id', 'new-date-container');
   newDateContainer.classList.add('hidden');
-  container.appendChild(newDateContainer);
+  hiddenContainer.appendChild(newDateContainer);
 
   const datePicker = document.createElement('input');
   datePicker.setAttribute('type', 'date');
@@ -329,7 +334,7 @@ function createTodoDetails() {
 
   // Show date picker
   dateImg.addEventListener('click', () => {
-    newDateContainer.classList.toggle('hidden');
+    hiddenContainer.classList.toggle('hidden');
   });
 
   newDateBtn.addEventListener('click', () => {
@@ -342,6 +347,7 @@ function createTodoDetails() {
       dueDate.innerText = 'Set a due date';
       dueDate.style.fontStyle = 'italic';
     }
+    hiddenContainer.classList.add('hidden');
     saveUpdates('refresh');
   });
 
