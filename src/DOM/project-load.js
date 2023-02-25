@@ -1,36 +1,101 @@
+/* eslint-disable import/no-cycle */
+// import Todo from '../app/Todo';
+
 import { saveUpdates } from '../app/Project';
-import Todo from '../app/Todo';
 
-function addSubmitListener(e, project) {
-  // prevent default behaviour of submit button
-  e.preventDefault();
-  // Capture input
-  const title = document.querySelector('#title-input');
-  const description = document.querySelector('#description-input');
-  const dueDate = document.querySelector('#due-date-input');
-  const priority = document.querySelector('#priority-select');
+function showTodoDetails(todo) {
+  // Fill in elements with todo details
+  const title = document.querySelector('#todo-details-title');
+  title.innerText = todo.title;
 
-  // Create new todo using input
-  const todo = new Todo(title.value, description.value, priority.value, dueDate.value);
-  // add todo to current project
-  project.addTodo(todo);
-  saveUpdates();
-  // Reset form
-  title.value = '';
-  description.value = '';
-  dueDate.value = '';
-  priority.value = 'normal';
-  // close form and remove overlay after submit
+  const dueDate = document.querySelector('#todo-details-due-date');
+  if (todo.dueDate) {
+    dueDate.innerText = `Due on: ${todo.dueDate}`;
+    dueDate.style.fontStyle = 'normal';
+  } else {
+    dueDate.innerText = 'Set a due date';
+    dueDate.style.fontStyle = 'italic';
+  }
+
+  const description = document.querySelector('#todo-details-description');
+  if (todo.description) {
+    description.innerText = todo.description;
+    description.style.fontStyle = 'normal';
+  } else {
+    description.innerText = 'Add a description';
+    description.style.fontStyle = 'italic';
+  }
+
+  const priority = document.querySelector('#todo-details-priority');
+  priority.innerText = `Priority: ${todo.priority}`;
+
+  // Display todo details div
+  const detailsDiv = document.querySelector('#todo-details');
   const overlay = document.querySelector('#overlay');
-  const form = document.querySelector('#todo-form');
-  overlay.style.display = 'none';
-  form.style.display = 'none';
+  detailsDiv.style.display = 'block';
+  overlay.style.display = 'block';
 }
 
-function prepSubmitBtn(project) {
-  const submitButton = document.querySelector('#submit-btn');
-  submitButton.removeEventListener('click', addSubmitListener);
-  submitButton.addEventListener('click', (e) => addSubmitListener(e, project));
+function displayTodos(project) {
+  const main = document.querySelector('main');
+
+  // Loop through todos array and display each in a div
+  for (let i = 0; i < project.todos.length; i += 1) {
+    // Create div to hold todo
+    const todoDiv = document.createElement('div');
+    todoDiv.classList.add('todo-div');
+
+    // Create checkmark and append
+    const check = document.createElement('img');
+    check.setAttribute('src', 'images/icons/check.svg');
+    check.setAttribute('alt', 'checkmark icon');
+    check.classList.add('todo-div-btns');
+    todoDiv.appendChild(check);
+
+    // Create <p> to hold todo title
+    const todo = document.createElement('p');
+    todo.classList.add('todo-title');
+    todo.innerText = `${project.todos[i].title}`;
+
+    // Check if todo is already completed
+    if (project.todos[i].completed === true) {
+      todo.classList.add('line-through');
+    }
+    todoDiv.appendChild(todo);
+
+    // Add functionality to checkmark button
+    // eslint-disable-next-line no-loop-func
+    check.addEventListener('click', () => {
+      // eslint-disable-next-line no-param-reassign
+      project.todos[i].completed = !project.todos[i].completed;
+      todo.classList.toggle('line-through');
+      saveUpdates();
+    });
+
+    // Add event listener to todo to expand info
+    todo.addEventListener('click', () => {
+      showTodoDetails(project.todos[i]);
+    });
+
+    // Create remove icon
+    const removeBtn = document.createElement('img');
+    removeBtn.setAttribute('src', 'images/icons/remove.svg');
+    removeBtn.setAttribute('alt', 'remove icon');
+    removeBtn.classList.add('todo-div-btns');
+    todoDiv.appendChild(removeBtn);
+
+    // Event listener to call removeTodo method on click.
+    removeBtn.addEventListener('click', () => {
+      // eslint-disable-next-line no-alert
+      if (window.confirm('Are you sure you wish to delete this todo?')) {
+        project.removeTodo(project.todos[i].title);
+        saveUpdates('refresh');
+      }
+    });
+
+    // Append todo to main.
+    main.appendChild(todoDiv);
+  }
 }
 
 function displayTodos(project) {
@@ -85,6 +150,7 @@ function loadProject(project) {
 
   // Display project description
   const description = document.createElement('p');
+  description.classList.add('project-desciription');
   description.innerText = `${project.description}`;
   main.appendChild(description);
 
@@ -96,6 +162,7 @@ function loadProject(project) {
   // Create an add todo button
   const addTodoBtn = document.createElement('button');
   addTodoBtn.innerText = 'Add todo';
+  addTodoBtn.classList.add('add-todo-btn');
   main.appendChild(addTodoBtn);
 
   // Event listener for add todo button
@@ -105,9 +172,6 @@ function loadProject(project) {
     const form = document.querySelector('#todo-form');
     form.style.display = 'block';
   });
-
-  // Add functionality to submit button
-  prepSubmitBtn(project);
 }
 
 export default loadProject;

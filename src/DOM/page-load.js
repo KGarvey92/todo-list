@@ -1,7 +1,10 @@
+import format from 'date-fns/format';
 import displayTodos from './todos-page';
 import loadProject from './project-load';
 import displayProjects from './projects-page';
 import { Project, projects, saveUpdates } from '../app/Project';
+import { getTodo, submitnewTodo } from '../app/Todo';
+import getProject from '../app/Helpers';
 
 function createHeader() {
   const header = document.createElement('header');
@@ -42,7 +45,9 @@ function createSidebar() {
   nav.appendChild(navBtns);
 
   // Event listeners for nav buttons
-  inbox.addEventListener('click', () => loadProject(projects[0]));
+  inbox.addEventListener('click', () => {
+    loadProject(projects[0]);
+  });
   todosBtn.addEventListener('click', displayTodos);
   projectBtn.addEventListener('click', displayProjects);
 
@@ -70,6 +75,7 @@ function populateSidebar() {
         loadProject(newProject);
       });
       projectList.insertBefore(newProjectBtn, addProject);
+      loadProject(newProject);
     }
   });
   projectList.appendChild(addProject);
@@ -187,18 +193,18 @@ function createTodoForm() {
   prioritySelect.setAttribute('id', 'priority-select');
 
   const highOption = document.createElement('option');
-  highOption.setAttribute('value', 'high');
+  highOption.setAttribute('value', 'High');
   highOption.textContent = 'High';
   prioritySelect.appendChild(highOption);
 
   const normalOption = document.createElement('option');
-  normalOption.setAttribute('value', 'normal');
+  normalOption.setAttribute('value', 'Normal');
   normalOption.setAttribute('selected', '');
   normalOption.textContent = 'Normal';
   prioritySelect.appendChild(normalOption);
 
   const lowOption = document.createElement('option');
-  lowOption.setAttribute('value', 'low');
+  lowOption.setAttribute('value', 'Low');
   lowOption.textContent = 'Low';
   prioritySelect.appendChild(lowOption);
 
@@ -214,6 +220,11 @@ function createTodoForm() {
   submitButton.textContent = 'Submit';
   form.appendChild(submitButton);
 
+  // Attach event listener to form
+  submitButton.addEventListener('click', (e) => {
+    submitnewTodo(e);
+    saveUpdates('refresh');
+  });
   // Append form to body
   body.appendChild(form);
 
@@ -222,8 +233,166 @@ function createTodoForm() {
     if (e.target === overlay) {
       overlay.style.display = 'none';
       form.style.display = 'none';
+      // adapt to also work with todo-details popup
+      const todoDetails = document.querySelector('#todo-details');
+      todoDetails.style.display = 'none';
+      const hiddenContainer = document.querySelector('#todo-hidden-container');
+      hiddenContainer.classList.add('hidden');
     }
   });
+}
+
+function createTodoDetails() {
+  // Select body element and create container
+  const body = document.querySelector('body');
+  const container = document.createElement('div');
+  container.setAttribute('id', 'todo-details');
+
+  // Create elements and leave blank for now.
+  const titleContainer = document.createElement('div');
+  titleContainer.setAttribute('id', 'todo-details-title-container');
+  container.appendChild(titleContainer);
+
+  const title = document.createElement('strong');
+  title.setAttribute('id', 'todo-details-title');
+  titleContainer.appendChild(title);
+
+  const dateContainer = document.createElement('div');
+  dateContainer.setAttribute('id', 'todo-details-date-container');
+  container.appendChild(dateContainer);
+
+  const dueDate = document.createElement('p');
+  dueDate.setAttribute('id', 'todo-details-due-date');
+  dateContainer.appendChild(dueDate);
+
+  const dateImg = document.createElement('img');
+  dateImg.setAttribute('src', 'images/icons/calendar.svg');
+  dateImg.setAttribute('alt', 'Calendar icon');
+  dateContainer.appendChild(dateImg);
+
+  const hiddenContainer = document.createElement('div');
+  hiddenContainer.setAttribute('id', 'todo-hidden-container');
+  hiddenContainer.classList.add('hidden');
+  container.appendChild(hiddenContainer);
+
+  const newDateContainer = document.createElement('div');
+  newDateContainer.setAttribute('id', 'new-date-container');
+  newDateContainer.classList.add('hidden');
+  hiddenContainer.appendChild(newDateContainer);
+
+  const datePicker = document.createElement('input');
+  datePicker.setAttribute('type', 'date');
+  datePicker.setAttribute('id', 'new-date-picker');
+  newDateContainer.appendChild(datePicker);
+
+  const newDateBtn = document.createElement('button');
+  newDateBtn.innerText = 'Confirm';
+  newDateContainer.appendChild(newDateBtn);
+
+  const descriptionContainer = document.createElement('div');
+  descriptionContainer.setAttribute('id', 'todo-description-container');
+
+  const description = document.createElement('p');
+  description.setAttribute('id', 'todo-details-description');
+  descriptionContainer.appendChild(description);
+
+  const editBtn = document.createElement('img');
+  editBtn.setAttribute('src', 'images/icons/edit.svg');
+  editBtn.setAttribute('alt', 'edit description icon');
+  descriptionContainer.appendChild(editBtn);
+
+  container.appendChild(descriptionContainer);
+
+  const priorityContainer = document.createElement('div');
+  priorityContainer.setAttribute('id', 'priority-container');
+  container.appendChild(priorityContainer);
+
+  const priority = document.createElement('p');
+  priority.setAttribute('id', 'todo-details-priority');
+  priorityContainer.appendChild(priority);
+
+  const upArrow = document.createElement('img');
+  upArrow.setAttribute('src', 'images/icons/chevrons-up.svg');
+  upArrow.setAttribute('alt', 'increase priority icon');
+  priorityContainer.appendChild(upArrow);
+
+  const downArrow = document.createElement('img');
+  downArrow.setAttribute('src', 'images/icons/chevrons-down.svg');
+  downArrow.setAttribute('alt', 'increase priority icon');
+  priorityContainer.appendChild(downArrow);
+
+  // Optional : Add move button and functionality
+  // const moveBtnContainer = document.createElement('div');
+  // moveBtnContainer.setAttribute('id', 'move-btn-container');
+  // container.appendChild(moveBtnContainer);
+
+  // const moveBtn = document.createElement('button');
+  // moveBtn.setAttribute('id', 'todo-details-move-btn');
+  // moveBtn.innerText = 'Move';
+  // moveBtnContainer.appendChild(moveBtn);
+
+  // Add event listeners to edit todo info
+
+  // Show date picker
+  dateImg.addEventListener('click', () => {
+    hiddenContainer.classList.toggle('hidden');
+  });
+
+  // Change due date
+  newDateBtn.addEventListener('click', () => {
+    const project = getProject();
+    project.editTodo(title.innerText, 'dueDate', datePicker.value);
+    if (datePicker.value) {
+      dueDate.innerText = format(new Date(datePicker.value), 'MM/dd/yyyy');
+      dueDate.style.fontStyle = 'normal';
+    } else {
+      dueDate.innerText = 'Set a due date';
+      dueDate.style.fontStyle = 'italic';
+    }
+    hiddenContainer.classList.add('hidden');
+    saveUpdates('refresh');
+  });
+
+  // Edit description
+  editBtn.addEventListener('click', () => {
+    const newDescription = prompt('Enter new description.');
+    const project = getProject();
+    project.editTodo(title.innerText, 'description', newDescription);
+    description.innerText = newDescription;
+    saveUpdates('refresh');
+  });
+
+  // Add functionality to priority buttons
+  upArrow.addEventListener('click', () => {
+    const project = getProject();
+    const todo = getTodo(title.innerText);
+    if (todo.priority === 'Normal') {
+      project.editTodo(title.innerText, 'priority', 'High');
+      priority.innerText = 'Priority: High';
+      saveUpdates('refresh');
+    } else if (todo.priority === 'Low') {
+      project.editTodo(title.innerText, 'priority', 'Normal');
+      priority.innerText = 'Priority: Normal';
+      saveUpdates('refresh');
+    }
+  });
+
+  downArrow.addEventListener('click', () => {
+    const project = getProject();
+    const todo = getTodo(title.innerText);
+    if (todo.priority === 'Normal') {
+      project.editTodo(title.innerText, 'priority', 'Low');
+      priority.innerText = 'Priority: Low';
+      saveUpdates('refresh');
+    } else if (todo.priority === 'High') {
+      project.editTodo(title.innerText, 'priority', 'Normal');
+      priority.innerText = 'Priority: Normal';
+      saveUpdates('refresh');
+    }
+  });
+
+  // Add the container to the body element
+  body.appendChild(container);
 }
 
 function loadPage() {
@@ -239,6 +408,7 @@ function loadPage() {
   populateSidebar();
   toggleSidebar();
   createTodoForm();
+  createTodoDetails();
 }
 
 export default loadPage;

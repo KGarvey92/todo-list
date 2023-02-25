@@ -1,5 +1,8 @@
+/* eslint-disable import/no-cycle */
 import format from 'date-fns/format';
-import Todo from './Todo';
+import loadProject from '../DOM/project-load';
+import { Todo } from './Todo';
+import getProject from './Helpers';
 
 class Project {
   constructor(title, description = '') {
@@ -25,15 +28,20 @@ class Project {
     this[targetProp] = value;
   }
 
-  editTodo(todo, targetProp, value) {
+  editTodo(todoName, targetProp, value) {
     for (let i = 0; i < this.todos.length; i += 1) {
-      if (this.todos[i].title === todo) {
+      if (this.todos[i].title === todoName) {
         if (targetProp === 'dueDate') {
-          this.todos[i][targetProp] = format(value, 'MM/dd/yyyy');
-          this.saveUpdates();
+          if (value) {
+            this.todos[i].dueDate = format(new Date(value), 'MM/dd/yyyy');
+            break;
+          } else {
+            this.todos[i].dueDate = null;
+            break;
+          }
         } else {
           this.todos[i][targetProp] = value;
-          this.saveUpdates();
+          break;
         }
       }
     }
@@ -52,7 +60,13 @@ function loadProjects() {
     projects = projects.map((project) => {
       const newProject = new Project(project.title, project.description);
       project.todos.forEach((todo) => {
-        const newTodo = new Todo(todo.title, todo.description, todo.priority, todo.dueDate);
+        const newTodo = new Todo(
+          todo.title,
+          todo.description,
+          todo.priority,
+          todo.dueDate,
+          todo.completed,
+        );
         newProject.addTodo(newTodo);
       });
       return newProject;
@@ -74,8 +88,14 @@ function loadProjects() {
 
 const projects = loadProjects();
 
-function saveUpdates() {
+function saveUpdates(refresh = null) {
   localStorage.setItem('projects', JSON.stringify(projects));
+  if (refresh) {
+    const project = getProject();
+    if (project) {
+      loadProject(project);
+    }
+  }
 }
 
 // Add new project to project array and store in JSON
