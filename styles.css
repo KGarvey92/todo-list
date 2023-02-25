@@ -102,7 +102,7 @@ nav li:hover {
     cursor: pointer;
 }
 
-nav li:active, #submit-btn:active, #todo-details-move-btn:active, #new-date-container button:active {
+nav li:active, #submit-btn:active, #new-date-container button:active {
     background-color: #D7C59B;
     scale: 0.95;
 }
@@ -210,7 +210,7 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover,
     margin-top: 8px;
 }
 
-#todo-details-title-container, #move-btn-container, #todo-details-date-container, #new-date-container, #priority-container {
+#todo-details-title-container, #todo-details-date-container, #new-date-container, #priority-container {
     display: flex;
     justify-content: center;
     gap: 8px;
@@ -219,12 +219,6 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover,
 .hidden {
     display: none;
 }
-
-#todo-details-move-btn {
-text-align: center;
-margin-top: 1rem;
-}
-  
 
 #todo-form {
     z-index: 4;
@@ -239,7 +233,7 @@ margin-top: 1rem;
     align-items: center;
 }
 
-input, select, textarea, #submit-btn, #todo-details-move-btn, #new-date-container button {
+input, select, textarea, #submit-btn, #new-date-container button {
     outline: none;
     border: none;
     padding: 5px;
@@ -257,7 +251,7 @@ input, select, textarea, #submit-btn, #todo-details-move-btn, #new-date-containe
     margin-bottom: 20px;
 }
 
-#submit-btn, #todo-details-move-btn, #new-date-container button {
+#submit-btn, #new-date-container button {
     cursor: pointer;
     padding: 10px 20px;
 }
