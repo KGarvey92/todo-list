@@ -321,14 +321,15 @@ function createTodoDetails() {
   downArrow.setAttribute('alt', 'increase priority icon');
   priorityContainer.appendChild(downArrow);
 
-  const moveBtnContainer = document.createElement('div');
-  moveBtnContainer.setAttribute('id', 'move-btn-container');
-  container.appendChild(moveBtnContainer);
+  // Optional : Add move button and functionality
+  // const moveBtnContainer = document.createElement('div');
+  // moveBtnContainer.setAttribute('id', 'move-btn-container');
+  // container.appendChild(moveBtnContainer);
 
-  const moveBtn = document.createElement('button');
-  moveBtn.setAttribute('id', 'todo-details-move-btn');
-  moveBtn.innerText = 'Move';
-  moveBtnContainer.appendChild(moveBtn);
+  // const moveBtn = document.createElement('button');
+  // moveBtn.setAttribute('id', 'todo-details-move-btn');
+  // moveBtn.innerText = 'Move';
+  // moveBtnContainer.appendChild(moveBtn);
 
   // Add event listeners to edit todo info
 
