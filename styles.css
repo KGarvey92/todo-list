@@ -40,11 +40,6 @@ header {
     margin-right: 20px;
 }
 
-.hamburger:hover {
-    cursor: pointer;
-    animation: 0.4s shake;
-}
-
 @keyframes slideIn {
     from {
         transform: translateX(-100%);
@@ -96,12 +91,18 @@ nav {
     padding: 5px;
 }
 
+#todo-description-container, #priority-container {
+    border: 5px solid #F5E5C0;
+    padding: 5px;
+    border-radius: 10px;
+}
+
 nav li:hover {
     background-color: #F5E5C0;
     cursor: pointer;
 }
 
-nav li:active {
+nav li:active, #submit-btn:active, #new-date-container button:active {
     background-color: #D7C59B;
     scale: 0.95;
 }
@@ -125,11 +126,11 @@ main {
     grid-column: 1 / 5;
     background-color:#F5E5C0;
     padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.tasks, .projects, .content-headings {
-    text-align: center;
-}
 
 footer {
     grid-area: footer;
@@ -146,11 +147,24 @@ footer {
     font-weight: bold;
 }
 
-footer > img:hover {
+footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover, #todo-details-date-container img:hover, #priority-container img:hover, #todo-description-container img:hover {
     cursor: pointer;
     scale: 1.1;
     animation: 0.4s shake;
+}
 
+.todo-div:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.todo-title:hover {
+    font-weight: bold;
+    scale: 1.1;
+}
+
+.line-through {
+    text-decoration: line-through;
 }
 
 #overlay {
@@ -164,7 +178,7 @@ footer > img:hover {
     z-index: 2;
 }
 
-#todo-form {
+#todo-form, #todo-details {
     display: none;
     position: fixed;
     top: 50%;
@@ -172,10 +186,42 @@ footer > img:hover {
     translate: -50% -50%;
     background-color: #4CD4CB;
     padding: 20px;
-    z-index: 3;
     border: 5px solid #F5E5C0;
     border-radius: 10px;
     max-width: 90vw;
+    min-width: 300px;
+    font-family: 'PT Sans', sans-serif;
+}
+
+#todo-details {
+    z-index: 3;
+}
+
+#todo-details-title {
+    font-size: 1.3rem;
+    text-decoration: underline;
+}
+
+#todo-description-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+#todo-details-title-container, #todo-details-date-container, #new-date-container, #priority-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+
+.hidden {
+    display: none;
+}
+
+#todo-form {
+    z-index: 4;
 }
 
 #form-inputs {
@@ -185,10 +231,9 @@ footer > img:hover {
     row-gap: 10px;
     margin-bottom: 10px;
     align-items: center;
-    font-family: 'PT Sans', sans-serif;
 }
 
-input, select, textarea, #submit-btn {
+input, select, textarea, #submit-btn, #new-date-container button {
     outline: none;
     border: none;
     padding: 5px;
@@ -196,27 +241,37 @@ input, select, textarea, #submit-btn {
     border-radius: 10px;
 }
 
-.todo-div {
-    display: flex;
-    padding-left: 8px;
-    padding-right: 8px;
-    justify-content: space-between;
-    border: 5px solid #4CD4CB;
+.add-todo-btn {
+    border: 5px solid black;
+    background-color: #4CD4CB;
     border-radius: 10px;
-    margin-right: 20px;
-    margin-bottom: 10px;
+    padding: 10px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#submit-btn, #new-date-container button {
+    cursor: pointer;
+    padding: 10px 20px;
 }
 
 #submit-btn {
-    cursor: pointer;
-    padding: 10px;
     width: 100%;
 }
 
-#submit-btn:active {
-    scale: 0.95;
-    background-color: #D7C59B;
+.todo-div {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    min-width: 300px;
+    margin-bottom: 8px;
+    border: 5px solid #4CD4CB;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
+
 @media (min-width: 600px) {
     nav {
         display: block;
@@ -224,11 +279,9 @@ input, select, textarea, #submit-btn {
 
     main {
         padding-left: 250px;
+        align-items: baseline;
     }
 
-    .tasks, .projects, .content-headings {
-        text-align: justify;
-    }
 }
 
 @media (min-width: 900px) {
