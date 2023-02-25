@@ -79,7 +79,7 @@ function loadProjects() {
   }
   // If there are no tasks, create default task
   if (projects[0].todos.length === 0) {
-    const firstTask = new Todo('Create some todos', 'Fill out your inbox some more.', 'normal');
+    const firstTask = new Todo('Create some todos', 'Fill out your inbox some more.', 'Normal');
     projects[0].addTodo(firstTask);
   }
 
