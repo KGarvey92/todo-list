@@ -98,45 +98,6 @@ function displayTodos(project) {
   }
 }
 
-function displayTodos(project) {
-  const main = document.querySelector('main');
-
-  // Loop through todos array and display each in a div
-  for (let i = 0; i < project.todos.length; i += 1) {
-    // Create div to hold todo
-    const todoDiv = document.createElement('div');
-    todoDiv.classList.add('todo-div');
-
-    // Create checkmark and append
-    const check = document.createElement('img');
-    check.setAttribute('src', 'images/icons/check.svg');
-    check.setAttribute('alt', 'checkmark icon');
-    todoDiv.appendChild(check);
-
-    // TODO: attach event listener to change todo.completed to
-    // true and also add a class to change color or strikethrough.
-
-    // Create <p> to hold todo title
-    const todo = document.createElement('p');
-    todo.innerText = `${project.todos[i].title}`;
-    todoDiv.appendChild(todo);
-
-    // TODO: Add event listener to todo title to open up
-    // a todo display popup that shows duedate, description and allows editing.
-
-    // Create remove icon
-    const removeBtn = document.createElement('img');
-    removeBtn.setAttribute('src', 'images/icons/remove.svg');
-    removeBtn.setAttribute('alt', 'remove icon');
-    todoDiv.appendChild(removeBtn);
-
-    // TODO: event listener to call removeTodo method on click.
-
-    // Append todo to main.
-    main.appendChild(todoDiv);
-  }
-}
-
 function loadProject(project) {
   // Clear content
   const main = document.querySelector('main');
