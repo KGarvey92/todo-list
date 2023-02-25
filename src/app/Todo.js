@@ -35,4 +35,15 @@ function submitnewTodo(e) {
   form.style.display = 'none';
 }
 
-export { Todo, submitnewTodo };
+function getTodo(title) {
+  const project = getProject();
+  let todo;
+  for (let i = 0; i < project.todos.length; i += 1) {
+    if (project.todos[i].title === title) {
+      todo = project.todos[i];
+      break;
+    }
+  }
+  return todo;
+}
+export { Todo, submitnewTodo, getTodo };

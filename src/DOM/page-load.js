@@ -3,7 +3,7 @@ import displayTodos from './todos-page';
 import loadProject from './project-load';
 import displayProjects from './projects-page';
 import { Project, projects, saveUpdates } from '../app/Project';
-import { submitnewTodo } from '../app/Todo';
+import { getTodo, submitnewTodo } from '../app/Todo';
 import getProject from '../app/Helpers';
 
 function createHeader() {
@@ -193,18 +193,18 @@ function createTodoForm() {
   prioritySelect.setAttribute('id', 'priority-select');
 
   const highOption = document.createElement('option');
-  highOption.setAttribute('value', 'high');
+  highOption.setAttribute('value', 'High');
   highOption.textContent = 'High';
   prioritySelect.appendChild(highOption);
 
   const normalOption = document.createElement('option');
-  normalOption.setAttribute('value', 'normal');
+  normalOption.setAttribute('value', 'Normal');
   normalOption.setAttribute('selected', '');
   normalOption.textContent = 'Normal';
   prioritySelect.appendChild(normalOption);
 
   const lowOption = document.createElement('option');
-  lowOption.setAttribute('value', 'low');
+  lowOption.setAttribute('value', 'Low');
   lowOption.textContent = 'Low';
   prioritySelect.appendChild(lowOption);
 
@@ -337,6 +337,7 @@ function createTodoDetails() {
     hiddenContainer.classList.toggle('hidden');
   });
 
+  // Change due date
   newDateBtn.addEventListener('click', () => {
     const project = getProject();
     project.editTodo(title.innerText, 'dueDate', datePicker.value);
@@ -349,6 +350,44 @@ function createTodoDetails() {
     }
     hiddenContainer.classList.add('hidden');
     saveUpdates('refresh');
+  });
+
+  // Edit description
+  editBtn.addEventListener('click', () => {
+    const newDescription = prompt('Enter new description.');
+    const project = getProject();
+    project.editTodo(title.innerText, 'description', newDescription);
+    description.innerText = newDescription;
+    saveUpdates('refresh');
+  });
+
+  // Add functionality to priority buttons
+  upArrow.addEventListener('click', () => {
+    const project = getProject();
+    const todo = getTodo(title.innerText);
+    if (todo.priority === 'Normal') {
+      project.editTodo(title.innerText, 'priority', 'High');
+      priority.innerText = 'Priority: High';
+      saveUpdates('refresh');
+    } else if (todo.priority === 'Low') {
+      project.editTodo(title.innerText, 'priority', 'Normal');
+      priority.innerText = 'Priority: Normal';
+      saveUpdates('refresh');
+    }
+  });
+
+  downArrow.addEventListener('click', () => {
+    const project = getProject();
+    const todo = getTodo(title.innerText);
+    if (todo.priority === 'Normal') {
+      project.editTodo(title.innerText, 'priority', 'Low');
+      priority.innerText = 'Priority: Low';
+      saveUpdates('refresh');
+    } else if (todo.priority === 'High') {
+      project.editTodo(title.innerText, 'priority', 'Normal');
+      priority.innerText = 'Priority: Normal';
+      saveUpdates('refresh');
+    }
   });
 
   // Add the container to the body element
