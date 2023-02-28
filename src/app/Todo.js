@@ -36,7 +36,7 @@ function submitnewTodo(e) {
 }
 
 function getTodo(title) {
-  const project = getProject();
+  const project = getProject(title);
   let todo;
   for (let i = 0; i < project.todos.length; i += 1) {
     if (project.todos[i].title === title) {

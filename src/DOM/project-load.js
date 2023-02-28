@@ -135,4 +135,4 @@ function loadProject(project) {
   });
 }
 
-export default loadProject;
+export { displayTodos, loadProject };

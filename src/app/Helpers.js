@@ -1,9 +1,19 @@
 /* eslint-disable import/no-cycle */
 import { projects } from './Project';
 
-function getProject() {
+function getProject(todoName = null) {
   // Find project title on page
-  const projectTitle = document.querySelector('.content-headings').textContent;
+  let projectTitle = document.querySelector('.content-headings').textContent;
+  // If accessed from all todos page search by todo name instead
+  if (projectTitle === 'Todos') {
+    projects.forEach((project) => {
+      project.todos.forEach((todo) => {
+        if (todoName === todo.title) {
+          projectTitle = project.title;
+        }
+      });
+    });
+  }
 
   // Find project with said title in array
   for (let i = 0; i < projects.length; i += 1) {

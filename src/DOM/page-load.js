@@ -1,10 +1,10 @@
 import format from 'date-fns/format';
-import displayTodos from './todos-page';
-import loadProject from './project-load';
+import { loadProject } from './project-load';
 import displayProjects from './projects-page';
 import { Project, projects, saveUpdates } from '../app/Project';
 import { getTodo, submitnewTodo } from '../app/Todo';
 import getProject from '../app/Helpers';
+import loadAllTodos from './todos-page';
 
 function createHeader() {
   const header = document.createElement('header');
@@ -48,7 +48,7 @@ function createSidebar() {
   inbox.addEventListener('click', () => {
     loadProject(projects[0]);
   });
-  todosBtn.addEventListener('click', displayTodos);
+  todosBtn.addEventListener('click', loadAllTodos);
   projectBtn.addEventListener('click', displayProjects);
 
   return nav;
@@ -352,7 +352,7 @@ function createTodoDetails() {
 
   // Change due date
   newDateBtn.addEventListener('click', () => {
-    const project = getProject();
+    const project = getProject(title.innerText);
     project.editTodo(title.innerText, 'dueDate', datePicker.value);
     if (datePicker.value) {
       dueDate.innerText = format(new Date(datePicker.value), 'MM/dd/yyyy');
@@ -368,7 +368,7 @@ function createTodoDetails() {
   // Edit description
   editBtn.addEventListener('click', () => {
     const newDescription = prompt('Enter new description.');
-    const project = getProject();
+    const project = getProject(title.innerText);
     project.editTodo(title.innerText, 'description', newDescription);
     description.innerText = newDescription;
     saveUpdates('refresh');
@@ -376,7 +376,7 @@ function createTodoDetails() {
 
   // Add functionality to priority buttons
   upArrow.addEventListener('click', () => {
-    const project = getProject();
+    const project = getProject(title.innerText);
     const todo = getTodo(title.innerText);
     if (todo.priority === 'Normal') {
       project.editTodo(title.innerText, 'priority', 'High');
@@ -390,7 +390,7 @@ function createTodoDetails() {
   });
 
   downArrow.addEventListener('click', () => {
-    const project = getProject();
+    const project = getProject(title.innerText);
     const todo = getTodo(title.innerText);
     if (todo.priority === 'Normal') {
       project.editTodo(title.innerText, 'priority', 'Low');

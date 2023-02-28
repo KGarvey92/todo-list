@@ -1,8 +1,9 @@
 /* eslint-disable import/no-cycle */
 import format from 'date-fns/format';
-import loadProject from '../DOM/project-load';
+import { loadProject } from '../DOM/project-load';
 import { Todo } from './Todo';
 import getProject from './Helpers';
+import loadAllTodos from '../DOM/todos-page';
 
 class Project {
   constructor(title, description = '') {
@@ -94,7 +95,7 @@ function saveUpdates(refresh = null) {
     const project = getProject();
     if (project) {
       loadProject(project);
-    }
+    } else loadAllTodos();
   }
 }
 
