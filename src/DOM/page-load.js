@@ -104,6 +104,7 @@ function populateSidebar() {
 // }
 
 function toggleSidebar() {
+// toggle sidebar with hamburger menu
   const hamburger = document.querySelector('.hamburger');
   hamburger.addEventListener('click', () => {
     const nav = document.querySelector('nav');
@@ -113,6 +114,17 @@ function toggleSidebar() {
       nav.style.display = 'none';
     }
     nav.classList.toggle('show-nav');
+  });
+
+  // hide sidebar on touch event on small devices
+  const main = document.querySelector('main');
+  main.addEventListener('touchstart', () => {
+    const nav = document.querySelector('nav');
+    const width = window.innerWidth;
+    if (nav.style.display === 'block' && width < 600) {
+      nav.style.display = 'none';
+      nav.classList.toggle('show-nav');
+    }
   });
 }
 
