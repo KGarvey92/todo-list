@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { displayTodos } from './project-load';
 import { projects } from '../app/Project';
 
