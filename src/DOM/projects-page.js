@@ -1,5 +1,7 @@
+/* eslint-disable import/no-cycle */
 import { getProjectPrompt } from '../app/Helpers';
 import { projects, saveUpdates } from '../app/Project';
+import { populateSidebar } from './page-load';
 
 function createProjectList() {
   // loop through projects and create div for each
@@ -34,6 +36,7 @@ function createProjectList() {
           // eslint-disable-next-line no-param-reassign
           project.title = newTitle;
           saveUpdates('Projects');
+          populateSidebar();
         }
       });
     }

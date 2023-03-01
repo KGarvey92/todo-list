@@ -1,4 +1,5 @@
 import format from 'date-fns/format';
+// eslint-disable-next-line import/no-cycle
 import { loadProject } from './project-load';
 import displayProjects from './projects-page';
 import { Project, projects, saveUpdates } from '../app/Project';
@@ -44,6 +45,11 @@ function createSidebar() {
   navBtns.appendChild(projectBtn);
   nav.appendChild(navBtns);
 
+  // Create Project list div
+  const projectList = document.createElement('ul');
+  projectList.setAttribute('id', 'nav-projects');
+  nav.appendChild(projectList);
+
   // Event listeners for nav buttons
   inbox.addEventListener('click', () => {
     loadProject(projects[0]);
@@ -55,10 +61,8 @@ function createSidebar() {
 }
 
 function populateSidebar() {
-  const nav = document.querySelector('nav');
-  const projectList = document.createElement('ul');
-  projectList.classList.add('nav-projects');
-
+  const projectList = document.querySelector('#nav-projects');
+  projectList.innerHTML = '';
   // Add new projects via + button
   const addProject = document.createElement('li');
   addProject.innerText = '+';
@@ -95,7 +99,6 @@ function populateSidebar() {
   });
 
   // append all projects and + btn to sidebar
-  nav.appendChild(projectList);
 }
 
 // ** Later replace prompt with popup form to create project **
@@ -423,4 +426,4 @@ function loadPage() {
   createTodoDetails();
 }
 
-export default loadPage;
+export { populateSidebar, loadPage };

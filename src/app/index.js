@@ -1,4 +1,4 @@
-import loadPage from '../DOM/page-load';
+import { loadPage } from '../DOM/page-load';
 import { loadProject } from '../DOM/project-load';
 import { projects } from './Project';
 
