@@ -25,10 +25,10 @@ function getProject(todoName = null) {
 }
 
 function getProjectPrompt() {
-  let input = prompt('Enter new project name. Max 20 letters.');
+  let input = prompt('Enter new project name. Max 20 characters.');
   while (input.length > 20) {
     alert('Max length exceeded');
-    input = prompt('Enter new project name. Max 20 letters.');
+    input = prompt('Enter new project name. Max 20 characters.');
   }
   return input;
 }

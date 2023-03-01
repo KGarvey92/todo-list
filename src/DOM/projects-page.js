@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { getProjectPrompt } from '../app/Helpers';
-import { projects, saveUpdates } from '../app/Project';
+import { projects, removeProject, saveUpdates } from '../app/Project';
 import { populateSidebar } from './page-load';
 
 function createProjectList() {
@@ -38,6 +38,23 @@ function createProjectList() {
           saveUpdates('Projects');
           populateSidebar();
         }
+      });
+
+      description.addEventListener('click', () => {
+        let newDescription = prompt('Provide a description. Max 120 characters.');
+        while (newDescription.length > 120) {
+          alert('Too many characters, try again.');
+          newDescription = prompt('Provide a description. Max 120 characters.');
+        }
+        // eslint-disable-next-line no-param-reassign
+        project.description = newDescription;
+        saveUpdates('Projects');
+      });
+
+      removeBtn.addEventListener('click', () => {
+        removeProject(project.title);
+        saveUpdates('Projects');
+        populateSidebar();
       });
     }
   });
