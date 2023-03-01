@@ -167,7 +167,11 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover,
     font-weight: bold;
     font-size: 1.2rem;
     padding: 8px;
+    width: 160px;
+    text-align: center;
+    cursor: pointer;
 }
+
 
 .project-description {
     font-size: 0.8rem;

@@ -24,4 +24,12 @@ function getProject(todoName = null) {
   return null; // return null if no project with the given title was found
 }
 
-export default getProject;
+function getProjectPrompt() {
+  let input = prompt('Enter new project name. Max 20 letters.');
+  while (input.length > 20) {
+    alert('Max length exceeded');
+    input = prompt('Enter new project name. Max 20 letters.');
+  }
+  return input;
+}
+export { getProjectPrompt, getProject };

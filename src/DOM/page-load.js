@@ -3,7 +3,7 @@ import { loadProject } from './project-load';
 import displayProjects from './projects-page';
 import { Project, projects, saveUpdates } from '../app/Project';
 import { getTodo, submitnewTodo } from '../app/Todo';
-import getProject from '../app/Helpers';
+import { getProject, getProjectPrompt } from '../app/Helpers';
 import loadAllTodos from './todos-page';
 
 function createHeader() {
@@ -63,7 +63,7 @@ function populateSidebar() {
   const addProject = document.createElement('li');
   addProject.innerText = '+';
   addProject.addEventListener('click', () => {
-    const input = prompt('Give your new project a name.');
+    const input = getProjectPrompt();
     if (input !== null) {
       const newProject = new Project(input);
       projects.push(newProject);

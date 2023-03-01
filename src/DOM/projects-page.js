@@ -1,29 +1,42 @@
-import { projects } from '../app/Project';
+import { getProjectPrompt } from '../app/Helpers';
+import { projects, saveUpdates } from '../app/Project';
 
 function createProjectList() {
   // loop through projects and create div for each
   const main = document.querySelector('main');
   projects.forEach((project) => {
-    const container = document.createElement('div');
-    container.classList.add('project-container');
-    const title = document.createElement('p');
-    title.innerText = project.title;
-    title.classList.add('project-title');
-    container.appendChild(title);
-    const description = document.createElement('p');
-    description.classList.add('project-description');
-    if (project.description) {
-      description.innerText = project.description;
-    } else {
-      description.innerText = 'Add a description';
+    if (project.title !== 'Inbox') {
+      const container = document.createElement('div');
+      container.classList.add('project-container');
+      const title = document.createElement('p');
+      title.innerText = project.title;
+      title.classList.add('project-title');
+      container.appendChild(title);
+      const description = document.createElement('p');
+      description.classList.add('project-description');
+      if (project.description) {
+        description.innerText = project.description;
+      } else {
+        description.innerText = 'Add a description';
+      }
+      container.appendChild(description);
+      const removeBtn = document.createElement('img');
+      removeBtn.setAttribute('src', 'images/icons/remove.svg');
+      removeBtn.setAttribute('alt', 'remove project icon');
+      removeBtn.classList.add('remove-button');
+      container.appendChild(removeBtn);
+      main.appendChild(container);
+
+      // add event listeners
+      title.addEventListener('click', () => {
+        const newTitle = getProjectPrompt();
+        if (newTitle) {
+          // eslint-disable-next-line no-param-reassign
+          project.title = newTitle;
+          saveUpdates('Projects');
+        }
+      });
     }
-    container.appendChild(description);
-    const removeBtn = document.createElement('img');
-    removeBtn.setAttribute('src', 'images/icons/remove.svg');
-    removeBtn.setAttribute('alt', 'remove project icon');
-    removeBtn.classList.add('remove-button');
-    container.appendChild(removeBtn);
-    main.appendChild(container);
   });
 }
 

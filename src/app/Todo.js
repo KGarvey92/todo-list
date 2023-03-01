@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import format from 'date-fns/format';
-import getProject from './Helpers';
+import { getProject } from './Helpers';
 
 class Todo {
   constructor(title, description, priority, dueDate = null, completionStatus = false) {
