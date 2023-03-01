@@ -147,7 +147,7 @@ footer {
     font-weight: bold;
 }
 
-footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover, #todo-details-date-container img:hover, #priority-container img:hover, #todo-description-container img:hover {
+footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover, #todo-details-date-container img:hover, #priority-container img:hover, #todo-description-container img:hover, .remove-button:hover {
     cursor: pointer;
     scale: 1.1;
     animation: 0.4s shake;
@@ -179,6 +179,7 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover,
     border-right: 3px solid #4CD4CB;
     padding: 8px;
     flex: 1;
+    cursor: pointer;
 }
 
 .remove-button {
