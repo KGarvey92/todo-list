@@ -153,14 +153,32 @@ footer > img:hover, .add-todo-btn:hover, .hamburger:hover, .todo-div-btns:hover,
     animation: 0.4s shake;
 }
 
-.todo-div:hover {
-    cursor: pointer;
+.todo-div:hover, .project-container:hover {
     scale: 1.1;
 }
 
 .todo-title:hover {
     font-weight: bold;
     scale: 1.1;
+    cursor: pointer;
+}
+
+.project-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 8px;
+}
+
+.project-description {
+    font-size: 0.8rem;
+    border-left: 3px solid #4CD4CB;
+    border-right: 3px solid #4CD4CB;
+    padding: 8px;
+    flex: 1;
+}
+
+.remove-button {
+    margin: 8px;
 }
 
 .line-through {
@@ -264,12 +282,22 @@ input, select, textarea, #submit-btn, #new-date-container button {
     display: flex;
     justify-content: space-between;
     gap: 8px;
-    min-width: 300px;
+    width: 75%;
+    max-width: 500px;
     margin-bottom: 8px;
     border: 5px solid #4CD4CB;
     border-radius: 10px;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+.project-container {
+    display: flex;
+    width: 75%;
+    max-width: 600px;
+    border: 5px solid #4CD4CB;
+    border-radius: 10px;
+    margin-bottom: 8px;
 }
 
 @media (min-width: 600px) {
